@@ -30,8 +30,11 @@ namespace Tests
 
             Assert.That(nextPageURL, Is.EqualTo(chromeDriver.Url));
             ut.CountResults(chromeDriver);
-            ut.SaveProductMainPage(chromeDriver, 7); // With xpath it has to be done from the third element. 
+            for (int i = 3; i < 7; i ++)
+            {
+                ut.SaveProductMainPage(chromeDriver, i); // With xpath it has to be done from the third element. 
 
+            }
             chromeDriver.Close();
         }
 

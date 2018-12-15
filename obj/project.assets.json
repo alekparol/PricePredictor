@@ -5784,11 +5784,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\WebScraper\\WebScraper\\WebScraper.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Documents\\OLX Scraper Windows\\WebScraper\\WebScraper.csproj",
       "projectName": "WebScraper",
-      "projectPath": "C:\\Users\\User\\source\\repos\\WebScraper\\WebScraper\\WebScraper.csproj",
+      "projectPath": "C:\\Users\\User\\Documents\\OLX Scraper Windows\\WebScraper\\WebScraper.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\source\\repos\\WebScraper\\WebScraper\\obj\\",
+      "outputPath": "C:\\Users\\User\\Documents\\OLX Scraper Windows\\WebScraper\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

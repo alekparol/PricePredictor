@@ -10,124 +10,7 @@ namespace OLXScraper
 {
     public class Utilities
     {
-
-        public class OLXProduct
-        {
-
-            private string productURL;
-
-            private string productName;
-            private Category productCategory;
-
-            private Price productPrice;
-
-            private Location productLocalization;
-            private Date productDate;
-
-            /* Getters and Setters */
-
-            public string ProductURL
-            {
-
-                get
-                {
-
-                    return productURL;
-
-                }
-                set
-                {
-
-                    productURL = value;
-
-                }
-
-            }
-
-            public string ProductName
-            {
-
-                get
-                {
-
-                    return productName;
-
-                }
-                set
-                {
-
-                    productName = value;
-
-                }
-
-            }
-
-            public Category ProductCategory
-            {
-
-                get
-                {
-
-                    return productCategory;
-
-                }
-                set
-                {
-
-                    productCategory = value;
-
-                }
-
-            }
-
-            public Price ProductPrice
-            {
-
-                get
-                {
-
-                    return productPrice;
-
-                }
-                set
-                {
-
-                    productPrice = value;
-
-                }
-
-            }
-
-            public Location ProductLocalization
-            {
-
-                get
-                {
-                    return productLocalization;
-                }
-                set
-                {
-                    productLocalization = value;
-                }
-
-            }
-
-            public Date ProductDate
-            {
-
-                get
-                {
-                    return productDate;
-                }
-                set
-                {
-                    productDate = value;
-                }
-
-            }
-
-        }
-
+   
         public string SearchOLX(IWebDriver driver, string productName)
         {
 
@@ -168,32 +51,6 @@ namespace OLXScraper
         }
 
         /**
-          * This function can be written in two versions:
-          *  1. Less memory usage and less info -> driver will scrape data from the main page. 
-          *  2. More memory usage, more time resources, more infor -> driver will navigate to each product's subpage and scrape the data from there.
-          * Second option could be an easier one because all the data on the main page are available only by XPath. 
-          * Product number should be dependend on the page number.                      
-          * NOTE : on every search result page, list of <tr> has two elements before products (<wrap>).             
-          * //*[@id="offers_table"]/tbody/tr[5]/td/div/table/tbody/tr[1]/td[2]/div/h3/a
-          * //*[@id="offers_table"]/tbody/tr[6]/td/div/table/tbody/tr[1]/td[2]/div/h3/a 
-          * //*[@id="offers_table"]/tbody/tr[6] product list element.
-          */
-
-        public void SaveProduct(IWebDriver driver, int productNumber)
-        {
-
-
-            List<IWebElement> listOfProducts = new List<IWebElement>(driver.FindElements(By.ClassName("wrap")));
-            OLXProduct product = new OLXProduct();
-
-            string productURL = listOfProducts[0].FindElement(By.XPath("//td/div/table/tbody/tr[1]/td[2]/div/h3/a")).GetAttribute("href");
-            Console.WriteLine(productURL);
-
-            driver.Navigate().GoToUrl(productURL);
-
-        }
-
-        /**
          * BASE //*[@id="offers_table"]/tbody/tr[3]
          * URL //td/div/table/tbody/tr[1]/td[2]/div/h3/a
          * PRICE //td/div/table/tbody/tr[1]/td[3]/div/p/strong        
@@ -210,7 +67,7 @@ namespace OLXScraper
         public OLXProduct SaveProductMainPage(IWebDriver driver, int productNumber)
         {
 
-            string xpathPrice = "./td/div/table/tbody/tr[2]/td[1]/div/p/small[2]/span";
+            string xpathPrice = "./td/div/table/tbody/tr[1]/td[3]/div/p/strong";
             string xpathURL = "./td/div/table/tbody/tr[1]/td[2]/div/h3/a";
 
             string xpathDate = "./td/div/table/tbody/tr[2]/td[1]/div/p/small[2]/span";
@@ -222,38 +79,20 @@ namespace OLXScraper
             List<IWebElement> listOfProducts = new List<IWebElement>(driver.FindElements(By.ClassName("wrap")));
             OLXProduct product = new OLXProduct();
 
-            Date dat = new Date(listOfProducts[productNumber].FindElement(By.XPath("./td/div/table/tbody/tr[2]/td[1]/div/p/small[2]/span")).Text);
-            Location loc = new Location(listOfProducts[productNumber].FindElement(By.XPath("./td/div/table/tbody/tr[2]/td[1]/div/p/small[1]/span")).Text);
-            Price pr = new Price(listOfProducts[productNumber].FindElement(By.XPath("./td/div/table/tbody/tr[1]/td[3]/div/p/strong")).Text);
-            Category cr = new Category(listOfProducts[productNumber].FindElement(By.XPath("./td/div/table/tbody/tr[1]/td[2]/div/p/small")).Text);
+            product.ProductURL = listOfProducts[productNumber].FindElement(By.XPath(xpathURL)).GetAttribute("href");
+            product.ProductName = listOfProducts[productNumber].FindElement(By.XPath(xpathName)).Text;
 
-            product.ProductPrice = pr;
-            product.ProductURL = listOfProducts[productNumber].FindElement(By.XPath("./td/div/table/tbody/tr[1]/td[2]/div/h3/a")).GetAttribute("href");
-            //product.ProductDate = dat;
-            product.ProductLocalization = loc;
-            product.ProductName = listOfProducts[productNumber].FindElement(By.XPath("./td/div/table/tbody/tr[1]/td[2]/div/h3/a/strong")).Text;
-            product.ProductCategory = cr;
+            product.ProductDate = new Date(listOfProducts[productNumber].FindElement(By.XPath(xpathDate)).Text);
+            product.ProductLocalization = new Location(listOfProducts[productNumber].FindElement(By.XPath(xpathLocalization)).Text);
+            product.ProductPrice = new Price(listOfProducts[productNumber].FindElement(By.XPath(xpathPrice)).Text);
+            product.ProductCategory = new Category(listOfProducts[productNumber].FindElement(By.XPath(xpathCategory)).Text);
 
-            Console.WriteLine(pr.Amount);
-            Console.WriteLine(pr.Currency);
-            Console.WriteLine(product.ProductURL);
-            //Console.WriteLine(product.ProductDate.Days);
-            //Console.WriteLine(product.ProductDate.Hours);
-            //Console.WriteLine(product.ProductDate.Minutes);
-            Console.WriteLine(product.ProductLocalization);
-            Console.WriteLine(product.ProductName);
-            Console.WriteLine(product.ProductCategory);
-
-            product.ProductPrice.DisplayPrice();
+            product.ProductDate.DisplayDate();
             product.ProductLocalization.DisplayLocation();
+            product.ProductPrice.DisplayPrice();
+            product.ProductCategory.DisplayCategory();
 
-
-            dat.DisplayDate();
-            loc.DisplayLocation();
-            pr.DisplayPrice();
-            cr.DisplayCategory();
             return product;
-
 
         }
 
