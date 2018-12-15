@@ -17,9 +17,9 @@ namespace OLXScraper
             private string productURL;
 
             private string productName;
-            private string productCategory;
+            private Category productCategory;
 
-            private string productPrice;
+            private Price productPrice;
 
             private Location productLocalization;
             private Date productDate;
@@ -62,7 +62,7 @@ namespace OLXScraper
 
             }
 
-            public string ProductCategory
+            public Category ProductCategory
             {
 
                 get
@@ -80,7 +80,7 @@ namespace OLXScraper
 
             }
 
-            public string ProductPrice
+            public Price ProductPrice
             {
 
                 get
@@ -123,16 +123,6 @@ namespace OLXScraper
                 {
                     productDate = value;
                 }
-
-            }
-
-            public int PriceToInteger()
-            {
-
-                string dateAuxilliary = productPrice.Remove(productPrice.Length - 3).Replace(" ", ""); // Changes "X XXX zl" format to the "XXXX" for parse to be available.
-                int price = Int32.Parse(dateAuxilliary);
-
-                return price;
 
             }
 
@@ -237,12 +227,12 @@ namespace OLXScraper
             Price pr = new Price(listOfProducts[productNumber].FindElement(By.XPath("./td/div/table/tbody/tr[1]/td[3]/div/p/strong")).Text);
             Category cr = new Category(listOfProducts[productNumber].FindElement(By.XPath("./td/div/table/tbody/tr[1]/td[2]/div/p/small")).Text);
 
-            product.ProductPrice = listOfProducts[productNumber].FindElement(By.XPath("./td/div/table/tbody/tr[1]/td[3]/div/p/strong")).Text;
+            product.ProductPrice = pr;
             product.ProductURL = listOfProducts[productNumber].FindElement(By.XPath("./td/div/table/tbody/tr[1]/td[2]/div/h3/a")).GetAttribute("href");
             //product.ProductDate = dat;
             product.ProductLocalization = loc;
             product.ProductName = listOfProducts[productNumber].FindElement(By.XPath("./td/div/table/tbody/tr[1]/td[2]/div/h3/a/strong")).Text;
-            product.ProductCategory = listOfProducts[productNumber].FindElement(By.XPath("./td/div/table/tbody/tr[1]/td[2]/div/p/small")).Text;
+            product.ProductCategory = cr;
 
             Console.WriteLine(pr.Amount);
             Console.WriteLine(pr.Currency);
@@ -254,9 +244,8 @@ namespace OLXScraper
             Console.WriteLine(product.ProductName);
             Console.WriteLine(product.ProductCategory);
 
-            Console.WriteLine(product.PriceToInteger());
-            Console.WriteLine(product.ProductLocalization.City);
-            Console.WriteLine(product.ProductLocalization.District);
+            product.ProductPrice.DisplayPrice();
+            product.ProductLocalization.DisplayLocation();
 
 
             dat.DisplayDate();
