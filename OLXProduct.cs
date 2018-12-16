@@ -8,6 +8,18 @@ namespace WebScraper
     public class OLXProduct
     {
 
+        private int productNumber;
+
+        private string xpathPrice = "./td/div/table/tbody/tr[1]/td[3]/div/p/strong";
+        private string xpathURL = "./td/div/table/tbody/tr[1]/td[2]/div/h3/a";
+
+        private string xpathDate = "./td/div/table/tbody/tr[2]/td[1]/div/p/small[2]/span";
+        private string xpathLocalization = "./td/div/table/tbody/tr[2]/td[1]/div/p/small[1]/span";
+
+        private string xpathName = "./td/div/table/tbody/tr[1]/td[2]/div/h3/a/strong";
+        private string xpathCategory = "./td/div/table/tbody/tr[1]/td[2]/div/p/small";
+
+
         private string productURL;
 
         private string productName;
@@ -111,15 +123,6 @@ namespace WebScraper
         public OLXProduct (IWebDriver driver, int productNumber)
         {
 
-            string xpathPrice = "./td/div/table/tbody/tr[1]/td[3]/div/p/strong";
-            string xpathURL = "./td/div/table/tbody/tr[1]/td[2]/div/h3/a";
-
-            string xpathDate = "./td/div/table/tbody/tr[2]/td[1]/div/p/small[2]/span";
-            string xpathLocalization = "./td/div/table/tbody/tr[2]/td[1]/div/p/small[1]/span";
-
-            string xpathName = "./td/div/table/tbody/tr[1]/td[2]/div/h3/a/strong";
-            string xpathCategory = "./td/div/table/tbody/tr[1]/td[2]/div/p/small";
-
             List<IWebElement> listOfProducts = new List<IWebElement>(driver.FindElements(By.ClassName("wrap")));
 
             productURL = listOfProducts[productNumber].FindElement(By.XPath(xpathURL)).GetAttribute("href");
@@ -129,6 +132,12 @@ namespace WebScraper
             productLocalization = new Location(listOfProducts[productNumber].FindElement(By.XPath(xpathLocalization)).Text);
             productPrice = new Price(listOfProducts[productNumber].FindElement(By.XPath(xpathPrice)).Text);
             productCategory = new Category(listOfProducts[productNumber].FindElement(By.XPath(xpathCategory)).Text);
+
+
+        }
+
+        public void DisplayProductInfo ()
+        {
 
             productDate.DisplayDate();
             productLocalization.DisplayLocation();

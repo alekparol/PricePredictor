@@ -10,18 +10,15 @@ namespace OLXScraper
 {
     public class Utilities
     {
-  
 
-        public void CountResults(IWebDriver driver)
-        {
-
-            string numberOfResults = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td//div[2]/h2")).Text;
-            Regex foundResults = new Regex("\\d+");
-
-            Match matchNumber = foundResults.Match(numberOfResults);
-            Console.WriteLine(matchNumber);
-
-        }
+        /**
+         * 
+         * About class name "wrap" - there are two kinds of elements on the OLX page: 
+         * sponsored content, and others. With both categories there are elements of the 
+         * class named "wrap", but in each of those, there are two "empty" elements on the
+         * beginning of the list. 
+         * 
+         */
 
         /**
          * BASE //*[@id="offers_table"]/tbody/tr[3]
@@ -36,8 +33,6 @@ namespace OLXScraper
          * Console.WriteLine(listOfProducts[productNumber].FindElement(By.ClassName("price")).Text);
          * string xpath = "//*[@id=\"offers_table\"]/tbody/tr[" + productNumber.ToString() + "]";        
         */
-
-        
 
 
     }
