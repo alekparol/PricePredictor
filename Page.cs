@@ -11,12 +11,9 @@ namespace WebScraper
         private string baseURL = "https://www.olx.pl";
         private string pageURL;
 
-        /**
-         * TODO: Add IWebElement locationField.
-         */
-
         private IWebElement searchField;
         private IWebElement submitButton;
+        private IWebElement locationField;
         
         public MainPage (IWebDriver driver)
         {
@@ -25,10 +22,8 @@ namespace WebScraper
 
             searchField = driver.FindElement(By.Id("headerSearch"));
             submitButton = driver.FindElement(By.Id("submit-searchmain"));
+            locationField = driver.FindElement(By.Id("cityFieldGray"));
 
-            /**
-             * TODO: Add action to insert location of the product before submiting (or even before product name insertion).
-             */
 
         }
 
@@ -38,8 +33,21 @@ namespace WebScraper
             searchField.SendKeys(productName);
             submitButton.Click();
 
-            pageURL = baseURL + "/oferty/q-" + productName + "/"; // That will do only if product name is one word. In other case between two words has to be "-" sign.
+            pageURL = baseURL + "/oferty/q-" + ChangeName(productName) + "/"; // That will do only if product name is one word. In other case between two words has to be "-" sign.
             return pageURL; 
+
+        }
+
+        public string SearchProduct(string productName, string productLocation)
+        {
+
+            searchField.SendKeys(productName);
+            locationField.SendKeys(productLocation);
+
+            submitButton.Click();
+
+            pageURL = baseURL + "/" + productLocation + "/q-" + ChangeName(productName) + "/";  
+            return pageURL;
 
         }
 
@@ -72,17 +80,6 @@ namespace WebScraper
 
         private int pageElements;
         private string pagePages;
-
-        private IWebElement searchField;
-        private IWebElement submitButton;
-
-        public SearchPage (IWebDriver driver)
-        {
-
-            searchField = driver.FindElement(By.Id("headerSearch"));
-            submitButton = driver.FindElement(By.Id("submit-searchmain"));
-
-        }
 
         public string SearchProduct(IWebDriver driver, string productName)
         {

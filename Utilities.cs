@@ -10,34 +10,7 @@ namespace OLXScraper
 {
     public class Utilities
     {
-   
-        public string SearchOLX(IWebDriver driver, string productName)
-        {
-
-            string pageURL = "https://www.olx.pl";
-            driver.Navigate().GoToUrl(pageURL);
-
-            driver.FindElement(By.Id("headerSearch")).SendKeys(productName);
-            driver.FindElement(By.Id("submit-searchmain")).Click();
-
-            productName = ChangeProductName(productName);
-
-            pageURL = pageURL + "/oferty/q-" + productName + "/"; // That will do only if product name is one word. In other case between two words has to be "-" sign.
-            return pageURL; // It helps with testing if driver navigated to the right page. 
-
-        }
-
-        public string ChangeProductName(string productName)
-        {
-
-            /**
-        * TODO: user should be able to use localization of the seek product. 
-        * TODO: pageURL should change with the localization typed with the user.             
-       */
-
-            return productName.Replace(' ', '-');
-
-        }
+  
 
         public void CountResults(IWebDriver driver)
         {

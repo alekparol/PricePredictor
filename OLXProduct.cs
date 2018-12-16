@@ -103,5 +103,9 @@ namespace WebScraper
 
         }
 
+        /**
+         * TODO: Change function from Utilities and make it constructor in this class. 
+         */
+
     }
 }
