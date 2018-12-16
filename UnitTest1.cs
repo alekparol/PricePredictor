@@ -32,11 +32,12 @@ namespace Tests
 
             Assert.That(nextPageURL, Is.EqualTo(chromeDriver.Url));
             ut.CountResults(chromeDriver);
-            for (int i = 3; i < 7; i ++)
+            OLXProduct product = new OLXProduct(chromeDriver, 3);
+            /*for (int i = 4; i < 7; i ++)
             {
-                ut.SaveProductMainPage(chromeDriver, i); // With xpath it has to be done from the third element. 
+                product = new OLXProduct(chromeDriver, i);
 
-            }
+            }*/
             chromeDriver.Close();
         }
 

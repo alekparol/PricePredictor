@@ -37,37 +37,7 @@ namespace OLXScraper
          * string xpath = "//*[@id=\"offers_table\"]/tbody/tr[" + productNumber.ToString() + "]";        
         */
 
-        public OLXProduct SaveProductMainPage(IWebDriver driver, int productNumber)
-        {
-
-            string xpathPrice = "./td/div/table/tbody/tr[1]/td[3]/div/p/strong";
-            string xpathURL = "./td/div/table/tbody/tr[1]/td[2]/div/h3/a";
-
-            string xpathDate = "./td/div/table/tbody/tr[2]/td[1]/div/p/small[2]/span";
-            string xpathLocalization = "./td/div/table/tbody/tr[2]/td[1]/div/p/small[1]/span";
-
-            string xpathName = "./td/div/table/tbody/tr[1]/td[2]/div/h3/a/strong";
-            string xpathCategory = "./td/div/table/tbody/tr[1]/td[2]/div/p/small";
-
-            List<IWebElement> listOfProducts = new List<IWebElement>(driver.FindElements(By.ClassName("wrap")));
-            OLXProduct product = new OLXProduct();
-
-            product.ProductURL = listOfProducts[productNumber].FindElement(By.XPath(xpathURL)).GetAttribute("href");
-            product.ProductName = listOfProducts[productNumber].FindElement(By.XPath(xpathName)).Text;
-
-            product.ProductDate = new Date(listOfProducts[productNumber].FindElement(By.XPath(xpathDate)).Text);
-            product.ProductLocalization = new Location(listOfProducts[productNumber].FindElement(By.XPath(xpathLocalization)).Text);
-            product.ProductPrice = new Price(listOfProducts[productNumber].FindElement(By.XPath(xpathPrice)).Text);
-            product.ProductCategory = new Category(listOfProducts[productNumber].FindElement(By.XPath(xpathCategory)).Text);
-
-            product.ProductDate.DisplayDate();
-            product.ProductLocalization.DisplayLocation();
-            product.ProductPrice.DisplayPrice();
-            product.ProductCategory.DisplayCategory();
-
-            return product;
-
-        }
+        
 
 
     }
