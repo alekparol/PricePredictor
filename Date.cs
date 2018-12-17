@@ -9,8 +9,7 @@ namespace WebScraper
     enum Months { January, February, March, April, May, June, July, August, September, October, November, December };
 
     /**
-     * TODO: Modify display of the date for "th" and that stuff.
-     * Months().Substring().ToUpper() + "." - for shorter. 
+     * TODO: Modify DisplayDate() to display date in polish or english.
      */
 
     public class Date
@@ -127,7 +126,7 @@ namespace WebScraper
 
             if (hours == 0 && minutes == 0)
             {
-                ChangeMonths();
+                ChangeMonthsToEnglish();
                 string ordinalNumber = OrdinalNumber();
                 Console.WriteLine("Product date is: {0} {1} of {2}", days, ordinalNumber, months);
             }
@@ -138,7 +137,7 @@ namespace WebScraper
 
         }
 
-        public void ChangeMonths ()
+        public void ChangeMonthsToEnglish ()
         {
             CultureInfo english = new CultureInfo("en-EN");
             CultureInfo polish = new CultureInfo("pl-PL");
@@ -149,6 +148,22 @@ namespace WebScraper
                 if (months == polish.DateTimeFormat.GetMonthName(12).ToLower().Substring(0, 3))
                 {
                     this.months = english.DateTimeFormat.GetMonthName(i);
+                }
+
+            }
+
+        }
+
+        public void ChangeMonthsToPolish()
+        {
+            CultureInfo polish = new CultureInfo("pl-PL");
+
+            for (int i = 1; i <= 12; i++)
+            {
+
+                if (months == polish.DateTimeFormat.GetMonthName(12).ToLower().Substring(0, 3))
+                {
+                    this.months = polish.DateTimeFormat.GetMonthName(i);
                 }
 
             }
