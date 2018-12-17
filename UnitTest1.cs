@@ -23,7 +23,7 @@ namespace Tests
         [Test]
         public void Test1()
         {
-            IWebDriver chromeDriver = new ChromeDriver("C:\\Users\\User\\Documents\\GitHub\\OLXScraper\\packages\\Selenium.WebDriver.ChromeDriver.2.45.0\\driver\\win32");
+            IWebDriver chromeDriver = new ChromeDriver();
             chromeDriver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(2);
 
             SearchPage searchPage = new SearchPage();
@@ -49,7 +49,7 @@ namespace Tests
         [Test]
         public void Test2()
         {
-            IWebDriver chromeDriver = new ChromeDriver("C:\\Users\\User\\Documents\\GitHub\\OLXScraper\\packages\\Selenium.WebDriver.ChromeDriver.2.45.0\\driver\\win32");
+            IWebDriver chromeDriver = new ChromeDriver();
             chromeDriver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(2);
 
             SearchPage searchPage = new SearchPage();
@@ -78,7 +78,7 @@ namespace Tests
         [Test]
         public void Test3()
         {
-            IWebDriver chromeDriver = new ChromeDriver("C:\\Users\\User\\Documents\\GitHub\\OLXScraper\\packages\\Selenium.WebDriver.ChromeDriver.2.45.0\\driver\\win32");
+            IWebDriver chromeDriver = new ChromeDriver();
             chromeDriver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(2);
 
             SearchPage searchPage = new SearchPage();
@@ -106,7 +106,7 @@ namespace Tests
         [Test]
         public void Test4()
         {
-            IWebDriver chromeDriver = new ChromeDriver("C:\\Users\\User\\Documents\\GitHub\\OLXScraper\\packages\\Selenium.WebDriver.ChromeDriver.2.45.0\\driver\\win32");
+            IWebDriver chromeDriver = new ChromeDriver();
             chromeDriver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(2);
 
             SearchPage searchPage = new SearchPage();

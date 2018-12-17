@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace WebScraper
@@ -118,6 +119,7 @@ namespace WebScraper
                 Months = dateAuxilliary[1];
 
             }
+
         }
 
         public void DisplayDate()
@@ -125,11 +127,90 @@ namespace WebScraper
 
             if (hours == 0 && minutes == 0)
             {
-                Console.WriteLine("Product date is: {0} th of {1}", days, months);
+                ChangeMonths();
+                Console.WriteLine("Product date is: {0} {1} of {2}", days, OrdinalNumber(), months);
             }
             else
             {
                 Console.WriteLine("Product date is: {0}, {1}:{2}", days, hours, minutes);
+            }
+
+        }
+
+        public void ChangeMonths ()
+        {
+            CultureInfo english = new CultureInfo("en-EN");
+            CultureInfo polish = new CultureInfo("pl-PL");
+
+            for (int i = 1; i <= 12; i++)
+            {
+
+                if (this.months.ToLower().Equals(polish.DateTimeFormat.GetMonthName(i).ToLower().Substring(0,3)))
+                {
+                    this.months = english.DateTimeFormat.GetMonthName(i);
+                }
+
+            }
+
+        }
+
+        public string OrdinalNumber ()
+        {
+
+            string daysString = this.days.ToString();
+
+            if (daysString.Length == 2)
+            {
+
+                if (daysString[0] == '1')
+                {
+                    return "th";
+                }
+                else
+                {
+                    if (daysString[1] == '1')
+                    {
+                        return "st";
+                    }
+                    else if (daysString[1] == '2')
+                    {
+                        return "nd";
+                    }
+                    else if (daysString[1] == '3')
+                    {
+                        return "rd";
+                    }
+                    else
+                    {
+                        return "th";
+                    }
+                }
+
+            }
+            else if (daysString.Length == 1)
+            {
+
+                if (daysString[1] == '1')
+                {
+                    return "st";
+                }
+                else if (daysString[1] == '2')
+                {
+                    return "nd";
+                }
+                else if (daysString[1] == '3')
+                {
+                    return "rd";
+                }
+                else
+                {
+                    return "th";
+                }
+
+            }
+            else
+            {
+                return "Wrong days format. ";
             }
 
         }

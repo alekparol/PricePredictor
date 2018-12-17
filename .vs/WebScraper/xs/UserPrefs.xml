@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{08D54AEB-FC29-4CFE-8BAE-11584E4ED519}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Date.cs">
+    <Files>
+      <File FileName="Category.cs" Line="33" Column="14" />
+      <File FileName="Date.cs" Line="124" Column="1" />
+      <File FileName="Location.cs" Line="1" Column="1" />
+      <File FileName="OLXProduct.cs" Line="1" Column="1" />
+      <File FileName="Page.cs" Line="51" Column="31" />
+      <File FileName="Price.cs" Line="1" Column="1" />
+      <File FileName="UnitTest1.cs" Line="107" Column="28" />
+      <File FileName="Utilities.cs" Line="10" Column="1" />
+      <File FileName="ExportData.cs" Line="1" Column="1" />
+      <File FileName="AnalyzeData.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="WebScraper" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.WebScraper PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

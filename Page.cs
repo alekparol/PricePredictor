@@ -47,7 +47,6 @@ namespace WebScraper
             /**
              * TODO: Remove this nasty repetition.
              */
-            locationField.Click();
 
             Thread.Sleep(100);
             submitButton.Click();
