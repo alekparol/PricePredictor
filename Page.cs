@@ -96,7 +96,10 @@ namespace WebScraper
              * TODO: Remove this nasty repetition.
              */
 
-            locationField.Click();
+            submitButton.Click();
+
+            Thread.Sleep(1000);
+
             submitButton.Click();
 
             nextPageURL = baseURL + "/" + ChangeLocation(productLocation) + "/q-" + ChangeName(productName) + "/";  
