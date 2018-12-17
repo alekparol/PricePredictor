@@ -7,15 +7,59 @@ using System.Threading;
 
 namespace WebScraper
 {
+
+    /**
+     * TODO: Make SearchPage and ProductPage to inherit from MainPage. There are elements which are the same on those sites.    
+    */
+
     public class MainPage
     {
         private string baseURL = "https://www.olx.pl";
-        private string pageURL;
+        private string nextPageURL;
 
         private IWebElement searchField;
         private IWebElement submitButton;
         private IWebElement locationField;
-        
+
+        /* =================== */
+        /* Getters and Setters */
+        /* =================== */
+
+        public string BaseURL 
+        {
+
+            get
+            {
+                return BaseURL;
+            }
+
+        }
+
+        public string NextPageURL
+        {
+
+            get
+            {
+                return nextPageURL;
+            }
+            set
+            {
+                nextPageURL = value;
+            }
+
+        }
+
+        /* ============ */
+        /* Constructors */
+        /* ============ */
+
+
+        public MainPage ()
+        {
+
+        }
+
+
         public MainPage (IWebDriver driver)
         {
 
@@ -27,14 +71,18 @@ namespace WebScraper
 
         }
 
+        /* ============= */
+        /* Class Methods */
+        /* ============= */
+
         public string SearchProduct (string productName)
         {
 
             searchField.SendKeys(productName);
             submitButton.Click();
 
-            pageURL = baseURL + "/oferty/q-" + ChangeName(productName) + "/"; // That will do only if product name is one word. In other case between two words has to be "-" sign.
-            return pageURL; 
+            nextPageURL = baseURL + "/oferty/q-" + ChangeName(productName) + "/"; // That will do only if product name is one word. In other case between two words has to be "-" sign.
+            return nextPageURL; 
 
         }
 
@@ -48,11 +96,11 @@ namespace WebScraper
              * TODO: Remove this nasty repetition.
              */
 
-            Thread.Sleep(100);
+            locationField.Click();
             submitButton.Click();
 
-            pageURL = baseURL + "/" + ChangeLocation(productLocation) + "/q-" + ChangeName(productName) + "/";  
-            return pageURL;
+            nextPageURL = baseURL + "/" + ChangeLocation(productLocation) + "/q-" + ChangeName(productName) + "/";  
+            return nextPageURL;
 
         }
 

@@ -5,6 +5,10 @@ using System.Text;
 namespace WebScraper
 {
 
+    /**
+     * Making module which could check distance product from the current position (?). Check for the fastest and cheapest way to get product.    
+    */
+
     public class Location
     {
 
@@ -13,15 +17,15 @@ namespace WebScraper
         private string city;
         private string district;
 
+        /* =================== */
+        /* Getters and Setters */
+        /* =================== */
+
         public string ProductLocalization
         {
             get
             {
-                return productLocalization;
-            }
-            set
-            {
-                productLocalization = value;
+                return productLocalization; // Readonly.
             }
 
         }
@@ -52,6 +56,15 @@ namespace WebScraper
 
         }
 
+        /* ============ */
+        /* Constructors */
+        /* ============ */
+
+        public Location ()
+        {
+
+        }
+
         public Location (string productLocalization)
         {
 
@@ -61,16 +74,20 @@ namespace WebScraper
             {
                 string[] locAuxilliary = productLocalization.Split(',');
 
-                City = locAuxilliary[0];
+                city = locAuxilliary[0].Trim();
                 District = locAuxilliary[1].Trim();
 
             }
             else
             {
-                City = productLocalization;
+                city = productLocalization;
             }
 
         }
+
+        /* ============= */
+        /* Class Methods */
+        /* ============= */
 
         public void DisplayLocation()
         {
@@ -81,7 +98,21 @@ namespace WebScraper
             }
             else
             {
-                Console.WriteLine("Product location is: {0}, {1}", city, district);
+                Console.WriteLine("Product location is: {0} in {1}", district, city);
+            }
+
+        }
+
+        public void DisplayLocationInPolish()
+        {
+
+            if (district == null)
+            {
+                Console.WriteLine("Produkt jest zlokalizowany w: {0}", city);
+            }
+            else
+            {
+                Console.WriteLine("Produkt zlokalizowany jest w: {0} w {1}", district, city);
             }
 
         }

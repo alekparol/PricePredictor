@@ -6,11 +6,17 @@ using System.Text;
 namespace WebScraper
 {
 
-    enum Months { January, February, March, April, May, June, July, August, September, October, November, December };
-
     /**
-     * TODO: Add changing name of the day to polish and english. 
+     * TODO: Add changing name of the day in polish and in english.  
+     * TODO: Move all functions which are used in differents modules to the one utility component. OR use changeName(), changeLocalation() etc. as a method of page class, 
+     * as those methods do the same job - baseURL + / + component_first + / component_second + /.     
+     * TODO: Change getters and setter to read only or write only. 
+     * TODO: Think about inheritance and changing private to protected.         
+     * TODO: Provide translation for categories and subcategories with google translate (yep, that is pretty stupid idea).  
+     * TODO: Make a base class which would be just day and month - in the case of "today" or yesterday just load today's date from the c#. And a class which will inherit 
+     * basic properties and override methods.     
      */
+
 
     public class Date
     {
@@ -23,17 +29,18 @@ namespace WebScraper
         private int hours;
         private int minutes;
 
+        /* =================== */
+        /* Getters and Setters */
+        /* =================== */
+
         public string ProductDate
         {
 
             get
             {
-                return productDate;
+                return productDate; // Readonly.
             }
-            set
-            {
-                ProductDate = value;
-            }
+                
 
         }
 
@@ -93,7 +100,17 @@ namespace WebScraper
 
         }
 
-        public Date(string productDate)
+        /* ============ */
+        /* Constructors */
+        /* ============ */
+
+
+        public Date ()
+        {
+
+        }
+
+        public Date (string productDate)
         {
 
             this.productDate = productDate;
@@ -121,26 +138,29 @@ namespace WebScraper
 
         }
 
-        public void DisplayDate()
+        /* ============= */
+        /* Class Methods */
+        /* ============= */
+
+
+        public void ChangeDaysToEnglish()
         {
 
-            if (hours == 0 && minutes == 0)
+            if (days == "dzisiaj")
             {
-
-                ChangeMonthsToEnglish();
-                string ordinalNumber = OrdinalNumber();
-                Console.WriteLine("Product date is: {0} {1} of {2}", days, ordinalNumber, months);
-
+                days = "Today";
             }
-            else
+            else if (days == "wczoraj")
             {
-                Console.WriteLine("Product date is: {0}, {1}:{2}", days, hours, minutes);
+                days = "yesterday";
             }
 
         }
 
-        public void ChangeMonthsToEnglish()
+
+        public void ChangeMonthsToEnglish ()
         {
+
             CultureInfo english = new CultureInfo("en-EN");
             CultureInfo polish = new CultureInfo("pl-PL");
 
@@ -156,8 +176,9 @@ namespace WebScraper
 
         }
 
-        public string OrdinalNumber()
+        public string OrdinalNumber ()
         {
+
             string ordinal = "th";
             int daysToInteger = Int32.Parse(days);
 
@@ -178,8 +199,9 @@ namespace WebScraper
 
         }
 
-        public void ChangeMonthsToPolish()
+        public void ChangeMonthsToPolish ()
         {
+
             CultureInfo polish = new CultureInfo("pl-PL");
 
             for (int i = 1; i <= 12; i++)
@@ -194,7 +216,25 @@ namespace WebScraper
 
         }
 
-        public void DisplayDateInPolish()
+        public void DisplayDate ()
+        {
+
+            if (hours == 0 && minutes == 0)
+            {
+
+                ChangeMonthsToEnglish();
+                string ordinalNumber = OrdinalNumber();
+                Console.WriteLine("Product date is: {0} {1} of {2}", days, ordinalNumber, months);
+
+            }
+            else
+            {
+                Console.WriteLine("Product date is: {0}, {1}:{2}", days, hours, minutes);
+            }
+
+        }
+
+        public void DisplayDateInPolish ()
         {
 
             if (hours == 0 && minutes == 0)
@@ -211,6 +251,59 @@ namespace WebScraper
 
 
         }
+    }
+
+    public class PreciseDate:Date
+    {
+
+        private int hours;
+        private int minutes;
+
+        /* =================== */
+        /* Getters and Setters */
+        /* =================== */
+
+        public int Hours
+        {
+
+            get
+            {
+                return hours;
+            }
+            set
+            {
+                hours = value;
+            }
+
+        }
+
+        public int Minutes
+        {
+
+            get
+            {
+                return minutes;
+            }
+            set
+            {
+                minutes = value;
+            }
+
+        }
+
+        /* In the case of that class day = "Today" or "Yesterday", so the constructor has to load today's date and save it as a month, and day. */
+
+        /* ============ */
+        /* Constructors */
+        /* ============ */
+
+
+        public PreciseDate ()
+        {
+
+        }
+
+
     }
 
 }

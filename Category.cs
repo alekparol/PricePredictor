@@ -13,7 +13,7 @@ namespace WebScraper
          * TODO: Move all functions which are used in differents modules to the one utility component. OR use changeName(), changeLocalation() etc. as a method of page class, 
          * as those methods do the same job - baseURL + / + component_first + / component_second + /.     
          * TODO: Change getters and setter to read only or write only. 
-         * TODO: /think about inheritance and changing private to protected.         
+         * TODO: Think about inheritance and changing private to protected.         
          * TODO: Provide translation for categories and subcategories with google translate (yep, that is pretty stupid idea).         
          */
 
@@ -35,11 +35,7 @@ namespace WebScraper
 
             get
             {
-                return productCategory;
-            }
-            set
-            {
-                productCategory = value;
+                return productCategory; // Readonly.
             }
 
         }
@@ -143,7 +139,7 @@ namespace WebScraper
         {
 
             driver.Navigate().GoToUrl(subCategoryURL);
-            return mainCategoryURL;
+            return subCategoryURL;
 
         }
 
