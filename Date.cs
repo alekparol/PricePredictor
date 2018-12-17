@@ -128,7 +128,8 @@ namespace WebScraper
             if (hours == 0 && minutes == 0)
             {
                 ChangeMonths();
-                Console.WriteLine("Product date is: {0} {1} of {2}", days, OrdinalNumber(), months);
+                string ordinalNumber = OrdinalNumber();
+                Console.WriteLine("Product date is: {0} {1} of {2}", days, ordinalNumber, months);
             }
             else
             {
@@ -145,7 +146,7 @@ namespace WebScraper
             for (int i = 1; i <= 12; i++)
             {
 
-                if (this.months.ToLower().Equals(polish.DateTimeFormat.GetMonthName(i).ToLower().Substring(0,3)))
+                if (months == polish.DateTimeFormat.GetMonthName(12).ToLower().Substring(0, 3))
                 {
                     this.months = english.DateTimeFormat.GetMonthName(i);
                 }
@@ -156,62 +157,23 @@ namespace WebScraper
 
         public string OrdinalNumber ()
         {
+            string ordinal = "th";
+            int daysToInteger = Int32.Parse(days);
 
-            string daysString = this.days.ToString();
-
-            if (daysString.Length == 2)
+            if (daysToInteger == 1 || daysToInteger == 21 || daysToInteger == 31)
             {
-
-                if (daysString[0] == '1')
-                {
-                    return "th";
-                }
-                else
-                {
-                    if (daysString[1] == '1')
-                    {
-                        return "st";
-                    }
-                    else if (daysString[1] == '2')
-                    {
-                        return "nd";
-                    }
-                    else if (daysString[1] == '3')
-                    {
-                        return "rd";
-                    }
-                    else
-                    {
-                        return "th";
-                    }
-                }
-
+                ordinal = "st";
             }
-            else if (daysString.Length == 1)
+            else if (daysToInteger == 2 || daysToInteger == 22)
             {
-
-                if (daysString[1] == '1')
-                {
-                    return "st";
-                }
-                else if (daysString[1] == '2')
-                {
-                    return "nd";
-                }
-                else if (daysString[1] == '3')
-                {
-                    return "rd";
-                }
-                else
-                {
-                    return "th";
-                }
-
+                ordinal = "nd";
             }
-            else
+            else if (daysToInteger == 3 || daysToInteger == 23)
             {
-                return "Wrong days format. ";
+                ordinal = "rd";
             }
+
+            return ordinal;
 
         }
 
