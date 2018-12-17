@@ -7,10 +7,13 @@ namespace WebScraper
     public class Category
     {
 
+        private string baseURL = "https://www.olx.pl/";
         private string productCategory;
 
         private string mainCategory;
         private string subCategory;
+
+        private string categoryURL;
 
         public string ProductCategory
         {
@@ -54,6 +57,20 @@ namespace WebScraper
 
         }
 
+        public string CategoryURL
+        {
+
+            get
+            {
+                return categoryURL;
+            }
+            set
+            {
+                categoryURL = value;
+            }
+
+        }
+
         public Category(string productCategory)
         {
 
@@ -63,6 +80,8 @@ namespace WebScraper
 
             mainCategory = categoryAuxilliary[0].Trim();
             subCategory = categoryAuxilliary[1].Trim();
+
+            categoryURL = baseURL + "/" + mainCategory.ToLower() + "/" + subCategory.ToLower().Replace(" ", "-");
 
         }
 
