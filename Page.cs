@@ -92,14 +92,7 @@ namespace WebScraper
             searchField.SendKeys(productName);
             locationField.SendKeys(productLocation);
 
-            /**
-             * TODO: Remove this nasty repetition.
-             */
-
-            submitButton.Click();
-
             Thread.Sleep(1000);
-
             submitButton.Click();
 
             nextPageURL = baseURL + "/" + ChangeLocation(productLocation) + "/q-" + ChangeName(productName) + "/";  
