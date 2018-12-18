@@ -12,8 +12,7 @@ namespace WebScraper
          * TODO: Test Category URL.      
          * TODO: Move all functions which are used in differents modules to the one utility component. OR use changeName(), changeLocalation() etc. as a method of page class, 
          * as those methods do the same job - baseURL + / + component_first + / component_second + /.     
-         * TODO: Change getters and setter to read only or write only. 
-         * TODO: Think about inheritance and changing private to protected.         
+         * TODO: Change getters and setter to read only or write only where necessary.       
          * TODO: Provide translation for categories and subcategories with google translate (yep, that is pretty stupid idea).         
          */
 
@@ -118,8 +117,8 @@ namespace WebScraper
     public class SubCategory:MainCategory
     {
 
-        private string subCategoryName;
-        private string subCategoryURL;
+        protected string subCategoryName;
+        protected string subCategoryURL;
 
         /* =================== */
         /* Getters and Setters */

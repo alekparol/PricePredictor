@@ -142,17 +142,21 @@ namespace WebScraper
         /* Class Methods */
         /* ============= */
 
+            /**
+             * For real, that is not this method's functionality. It should pass current date and change days to numerical value and add month.            
+            */
 
         public void ChangeDaysToEnglish()
         {
+            DateTime currentTime = DateTime.Now;
 
             if (days == "dzisiaj")
             {
-                days = "Today";
+                days = currentTime.Day.ToString();
             }
             else if (days == "wczoraj")
             {
-                days = "yesterday";
+                days = (currentTime.Day - 1).ToString();
             }
 
         }
@@ -229,6 +233,7 @@ namespace WebScraper
             }
             else
             {
+                ChangeDaysToEnglish();
                 Console.WriteLine("Product date is: {0}, {1}:{2}", days, hours, minutes);
             }
 
@@ -251,59 +256,6 @@ namespace WebScraper
 
 
         }
-    }
-
-    public class PreciseDate:Date
-    {
-
-        private int hours;
-        private int minutes;
-
-        /* =================== */
-        /* Getters and Setters */
-        /* =================== */
-
-        public int Hours
-        {
-
-            get
-            {
-                return hours;
-            }
-            set
-            {
-                hours = value;
-            }
-
-        }
-
-        public int Minutes
-        {
-
-            get
-            {
-                return minutes;
-            }
-            set
-            {
-                minutes = value;
-            }
-
-        }
-
-        /* In the case of that class day = "Today" or "Yesterday", so the constructor has to load today's date and save it as a month, and day. */
-
-        /* ============ */
-        /* Constructors */
-        /* ============ */
-
-
-        public PreciseDate ()
-        {
-
-        }
-
-
     }
 
 }
