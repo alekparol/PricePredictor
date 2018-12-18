@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 
 namespace WebScraper
 {
-    public class Category
+    public class MainCategory
     {
 
         /**
@@ -20,11 +20,8 @@ namespace WebScraper
         private string baseURL = "https://www.olx.pl/";
         private string productCategory;
 
-        private string mainCategory;
-        private string subCategory;
-
+        protected string mainCategoryName;
         protected string mainCategoryURL;
-        private string subCategoryURL;
 
         /* =================== */
         /* Getters and Setters */
@@ -40,30 +37,16 @@ namespace WebScraper
 
         }
 
-        public string MainCategory
+        public string MainCategoryName
         {
 
             get
             {
-                return mainCategory;
+                return mainCategoryName;
             }
             set
             {
-                mainCategory = value;
-            }
-
-        }
-
-        public string SubCategory
-        {
-
-            get
-            {
-                return subCategory;
-            }
-            set
-            {
-                subCategory = value;
+                mainCategoryName = value;
             }
 
         }
@@ -82,42 +65,25 @@ namespace WebScraper
 
         }
 
-        public string SubCategoryURL
-        {
-
-            get
-            {
-                return subCategoryURL;
-            }
-            set
-            {
-                subCategoryURL = value;
-            }
-
-        }
-
         /* ============ */
         /* Constructors */
         /* ============ */
 
 
-        public Category ()
+        public MainCategory ()
         {
 
         }
 
 
-        public Category (string productCategory)
+        public MainCategory (string productCategory)
         {
 
             this.productCategory = productCategory;
             string[] categoryAuxilliary = productCategory.Split("»");
 
-            mainCategory = categoryAuxilliary[0].Trim();
-            subCategory = categoryAuxilliary[1].Trim();
-
-            mainCategoryURL = baseURL + "/" + mainCategory.ToLower().Replace(" ", "-") + "/";
-            subCategoryURL = mainCategoryURL + subCategory.ToLower().Replace(" ", "-") + "/";
+            mainCategoryName = categoryAuxilliary[0].Trim();
+            mainCategoryURL = baseURL + "/" + mainCategoryName.ToLower().Replace(" ", "-") + "/";
 
         }
 
@@ -128,16 +94,14 @@ namespace WebScraper
         public void DisplayCategory ()
         {
 
-            Console.WriteLine("Product main category is: {0}", mainCategory);
-            Console.WriteLine("Product subcategory is: {0}", subCategory);
+            Console.WriteLine("Product main category is: {0}", mainCategoryName);
 
         }
 
         public void DisplayCategoryInPolish ()
         {
 
-            Console.WriteLine("Glowna kategoria produtku to: {0}", mainCategory);
-            Console.WriteLine("Podkategoria produktu to: {0}", subCategory);
+            Console.WriteLine("Glowna kategoria produtku to: {0}", mainCategoryName);
 
         }
 
@@ -149,17 +113,9 @@ namespace WebScraper
 
         }
 
-        public string GoToSubCategory(IWebDriver driver)
-        {
-
-            driver.Navigate().GoToUrl(subCategoryURL);
-            return subCategoryURL;
-
-        }
-
     }
 
-    public class SubCategory:Category
+    public class SubCategory:MainCategory
     {
 
         private string subCategoryName;
@@ -225,24 +181,16 @@ namespace WebScraper
         public void DisplayCategory()
         {
 
-            Console.WriteLine("Product main category is: {0}", mainCategory);
-            Console.WriteLine("Product subcategory is: {0}", subCategory);
+            Console.WriteLine("Product main category is: {0}", mainCategoryName);
+            Console.WriteLine("Product subcategory is: {0}", subCategoryName);
 
         }
 
         public void DisplayCategoryInPolish()
         {
 
-            Console.WriteLine("Glowna kategoria produtku to: {0}", mainCategory);
-            Console.WriteLine("Podkategoria produktu to: {0}", subCategory);
-
-        }
-
-        public string GoToCategory(IWebDriver driver)
-        {
-
-            driver.Navigate().GoToUrl(mainCategoryURL);
-            return mainCategoryURL;
+            Console.WriteLine("Glowna kategoria produtku to: {0}", mainCategoryName);
+            Console.WriteLine("Podkategoria produktu to: {0}", subCategoryName);
 
         }
 

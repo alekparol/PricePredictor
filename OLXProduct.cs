@@ -23,7 +23,7 @@ namespace WebScraper
         private string productURL;
 
         private string productName;
-        private Category productCategory;
+        private MainCategory productCategory;
 
         private Price productPrice;
 
@@ -60,7 +60,7 @@ namespace WebScraper
 
         }
 
-        public Category ProductCategory
+        public MainCategory ProductCategory
         {
 
             get
@@ -131,7 +131,7 @@ namespace WebScraper
             productDate = new Date(listOfProducts[productNumber].FindElement(By.XPath(xpathDate)).Text);
             productLocalization = new Location(listOfProducts[productNumber].FindElement(By.XPath(xpathLocalization)).Text);
             productPrice = new Price(listOfProducts[productNumber].FindElement(By.XPath(xpathPrice)).Text);
-            productCategory = new Category(listOfProducts[productNumber].FindElement(By.XPath(xpathCategory)).Text);
+            productCategory = new MainCategory(listOfProducts[productNumber].FindElement(By.XPath(xpathCategory)).Text);
 
 
         }
