@@ -23,7 +23,7 @@ namespace WebScraper
         private string mainCategory;
         private string subCategory;
 
-        private string mainCategoryURL;
+        protected string mainCategoryURL;
         private string subCategoryURL;
 
         /* =================== */
@@ -78,6 +78,20 @@ namespace WebScraper
             set
             {
                 mainCategoryURL = value;
+            }
+
+        }
+
+        public string SubCategoryURL
+        {
+
+            get
+            {
+                return subCategoryURL;
+            }
+            set
+            {
+                subCategoryURL = value;
             }
 
         }
@@ -143,7 +157,104 @@ namespace WebScraper
 
         }
 
+    }
 
+    public class SubCategory:Category
+    {
+
+        private string subCategoryName;
+        private string subCategoryURL;
+
+        /* =================== */
+        /* Getters and Setters */
+        /* =================== */
+
+        public string SubCategoryName
+        {
+
+            get
+            {
+                return subCategoryName;
+            }
+            set
+            {
+                subCategoryName = value;
+            }
+
+        }
+
+        public string SubCategoryURL
+        {
+
+            get
+            {
+                return subCategoryURL;
+            }
+            set
+            {
+                subCategoryURL = value;
+            }
+
+        }
+
+        /* ============ */
+        /* Constructors */
+        /* ============ */
+
+        public SubCategory()
+        {
+
+        }
+
+
+        public SubCategory (string productCategory):base(productCategory)
+        {
+        
+            string[] categoryAuxilliary = productCategory.Split("»");
+
+            subCategoryName = categoryAuxilliary[1].Trim();
+            subCategoryURL = mainCategoryURL + subCategoryName.ToLower().Replace(" ", "-") + "/";
+
+        }
+
+
+        /* ============= */
+        /* Class Methods */
+        /* ============= */
+
+        public void DisplayCategory()
+        {
+
+            Console.WriteLine("Product main category is: {0}", mainCategory);
+            Console.WriteLine("Product subcategory is: {0}", subCategory);
+
+        }
+
+        public void DisplayCategoryInPolish()
+        {
+
+            Console.WriteLine("Glowna kategoria produtku to: {0}", mainCategory);
+            Console.WriteLine("Podkategoria produktu to: {0}", subCategory);
+
+        }
+
+        public string GoToCategory(IWebDriver driver)
+        {
+
+            driver.Navigate().GoToUrl(mainCategoryURL);
+            return mainCategoryURL;
+
+        }
+
+        public string GoToSubCategory(IWebDriver driver)
+        {
+
+            driver.Navigate().GoToUrl(subCategoryURL);
+            return subCategoryURL;
+
+        }
 
     }
+
 }
+
