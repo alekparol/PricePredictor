@@ -6,7 +6,9 @@ namespace WebScraper
 {
 
     /**
-     * Making module which could check distance product from the current position (?). Check for the fastest and cheapest way to get product.    
+     * Making module which could check distance product from the current position (?). Check for the fastest and cheapest way to get product.  
+     * To check current location GeoCordinateWatcher Class can be used to return specyfic longitude and latitude or just passing IP's location - 
+     * it would return city, so that would be not very detailed info but could do for this purpose.     
     */
 
     public class Location

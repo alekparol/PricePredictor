@@ -15,6 +15,7 @@ namespace WebScraper
      * TODO: Provide translation for categories and subcategories with google translate (yep, that is pretty stupid idea).  
      * TODO: Make a base class which would be just day and month - in the case of "today" or yesterday just load today's date from the c#. And a class which will inherit 
      * basic properties and override methods.     
+     * TODO: Change whole class to use DateTime struct.    
      */
 
 
