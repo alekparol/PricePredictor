@@ -8,7 +8,11 @@ using WebScraper;
 using System;
 
 /**  
- * TODO: Check if localization parser works for locations without districts and in other formats thab "City, District".        
+ * TODO: Check if localization parser works for locations without districts and in other formats thab "City, District".  
+ * TODO: Change sequence of methods and class initialization -> 
+ * 1. Firstly we initialize main page with given driver.
+ * 2. Then We call methon searchProduct() on the mainPage.
+ * 3. Then We initialize searchPage() object with a driver.  
 */
 
 namespace Tests
@@ -26,9 +30,9 @@ namespace Tests
             IWebDriver chromeDriver = new ChromeDriver();
             chromeDriver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(2);
 
-            SearchPage searchPage = new SearchPage();
             MainPage mainPage = new MainPage(chromeDriver);
             string nextPageURL = mainPage.SearchProduct("marshall major");
+            SearchPage searchPage = new SearchPage(chromeDriver);
 
             Thread.Sleep(100);
 
@@ -37,6 +41,7 @@ namespace Tests
             searchPage.CountPageElements(chromeDriver);
             OLXProduct product = new OLXProduct(chromeDriver, 10);
             product.DisplayProductInfo();
+            searchPage.DisplayAll();
             /*for (int i = 4; i < 7; i ++)
             {
                 product = new OLXProduct(chromeDriver, i);
