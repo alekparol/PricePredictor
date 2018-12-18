@@ -229,11 +229,13 @@ namespace WebScraper
 
                 ChangeMonthsToEnglish();
                 string ordinalNumber = OrdinalNumber();
+
                 Console.WriteLine("Product date is: {0} {1} of {2}", days, ordinalNumber, months);
 
             }
             else
             {
+
                 ChangeDaysToEnglish();
                 Console.WriteLine("Product date is: {0}, {1}:{2}", days, hours, minutes);
             }
