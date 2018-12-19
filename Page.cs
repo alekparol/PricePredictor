@@ -176,7 +176,7 @@ namespace WebScraper
 
     }
 
-    public class SearchPage:Page
+    public class SearchPage : Page
     {
 
         /**
@@ -214,7 +214,7 @@ namespace WebScraper
         /* =================== */
 
 
-        public List <IWebElement> PageChangeBar
+        public List<IWebElement> PageChangeBar
         {
             get
             {
@@ -256,20 +256,20 @@ namespace WebScraper
         /* ============ */
 
 
-        public SearchPage ()
-        { 
-        
+        public SearchPage()
+        {
+
         }
 
 
-        public SearchPage (IWebDriver driver)
+        public SearchPage(IWebDriver driver)
         {
 
             SearchBarSearch searchBar = new SearchBarSearch(driver);
 
 
-            pageChangeBar = new List<IWebElement> (driver.FindElements(By.ClassName("pager")));
-            pageNextPrev = new  List<IWebElement> (pageChangeBar[0].FindElements(By.ClassName("pageNextPrev")));
+            pageChangeBar = new List<IWebElement>(driver.FindElements(By.ClassName("pager")));
+            pageNextPrev = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("pageNextPrev")));
 
             if (pageNextPrev.Count == 2)
             {
@@ -288,7 +288,7 @@ namespace WebScraper
                 isPrevious = pagePrevious.GetAttribute("href") != null;
             }
 
-            listOfPages = new List <IWebElement> (pageChangeBar[0].FindElements(By.ClassName("fleft")));
+            listOfPages = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("fleft")));
             numberOfPages = listOfPages.Count;
 
             if (listOfPages.Count == 2)
@@ -308,7 +308,7 @@ namespace WebScraper
         /* Class Methods */
         /* ============= */
 
-        public void CountResults (IWebDriver driver)
+        public void CountResults(IWebDriver driver)
         {
 
             string numberOfResults = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td//div[2]/h2")).Text;
@@ -323,7 +323,7 @@ namespace WebScraper
                 searchCount = Int32.Parse(matchNumber.ToString());
 
                 Console.WriteLine(matchNumber);
-            } 
+            }
             else
             {
 
@@ -339,7 +339,7 @@ namespace WebScraper
 
         }
 
-        public int CountPageElements (IWebDriver driver)
+        public int CountPageElements(IWebDriver driver)
         {
 
             List<IWebElement> listOfProducts = new List<IWebElement>(driver.FindElements(By.ClassName("wrap")));
@@ -351,7 +351,7 @@ namespace WebScraper
 
         }
 
-        public void DisplayAll ()
+        public void DisplayAll()
         {
 
             Console.WriteLine(isNext);
@@ -362,6 +362,7 @@ namespace WebScraper
         }
 
     }
+
 
     public class ProductPage
     {

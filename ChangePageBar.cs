@@ -11,6 +11,10 @@ namespace WebScraper
     {
 
         private List<IWebElement> pageChangeBar; /* Web element which relates to whole page count bar on the bottom of the page - that is "previous", "next", list of pages. */
+
+        private NextPrev nextPrev;
+        private PageList pageList;
+
         private List<IWebElement> pageNextPrev;  /* Web element which relates to elements of the class containing "previous" and "next" links. This is subset of pageChangeBar. */
 
         private IWebElement pageNext;
@@ -41,6 +45,32 @@ namespace WebScraper
             {
                 pageChangeBar = value;
             }
+        }
+
+        public NextPrev NextPrev
+        {
+            get
+            {
+                return nextPrev;
+            }
+            set
+            {
+                nextPrev = value;
+            }
+
+        }
+
+        public PageList PageList
+        {
+            get
+            {
+                return pageList;
+            }
+            set
+            {
+                pageList = value;
+            }
+
         }
 
         public List<IWebElement> PageNextPrev
@@ -82,6 +112,9 @@ namespace WebScraper
         {
 
             pageChangeBar = new List<IWebElement>(driver.FindElements(By.ClassName("pager")));
+            nextPrev = new NextPrev(driver, pageChangeBar);
+            pageList = new PageList(driver, pageChangeBar);
+
             pageNextPrev = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("pageNextPrev")));
 
             listOfPages = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("fleft")));
