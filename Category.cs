@@ -16,7 +16,7 @@ namespace WebScraper
          * TODO: Provide translation for categories and subcategories with google translate (yep, that is pretty stupid idea).         
          */
 
-        private string baseURL = "https://www.olx.pl/";
+        protected string baseURL = "https://www.olx.pl/";
         private string productCategory;
 
         protected string mainCategoryName;
@@ -25,6 +25,16 @@ namespace WebScraper
         /* =================== */
         /* Getters and Setters */
         /* =================== */
+
+        public string BaseURL
+        {
+
+            get
+            {
+                return baseURL;
+            }
+
+        }
 
         public string ProductCategory
         {

@@ -25,6 +25,24 @@ namespace Tests
         }
 
         [Test]
+        public void TestCategorEmpty()
+        {
+
+            MainCategory testMainCategory = new MainCategory();
+            Assert.That(testMainCategory.BaseURL, Is.EqualTo("https://www.olx.pl/"));
+
+            Assert.That(testMainCategory.MainCategoryName, Is.EqualTo(""));
+            Assert.That(testMainCategory.MainCategoryURL, Is.EqualTo(""));
+
+        }
+
+        [Test]
+        public void TestCategoryNonEmpty()
+        {
+
+        }
+
+        [Test]
         public void Test1()
         {
             IWebDriver chromeDriver = new ChromeDriver();

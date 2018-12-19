@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{08D54AEB-FC29-4CFE-8BAE-11584E4ED519}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Page.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OLXProduct.cs">
     <Files>
-      <File FileName="Category.cs" Line="1" Column="1" />
-      <File FileName="Date.cs" Line="1" Column="1" />
+      <File FileName="Category.cs" Line="183" Column="25" />
+      <File FileName="Date.cs" Line="232" Column="1" />
       <File FileName="Location.cs" Line="1" Column="1" />
-      <File FileName="Page.cs" Line="258" Column="87" />
+      <File FileName="Page.cs" Line="478" Column="35" />
       <File FileName="Price.cs" Line="1" Column="1" />
       <File FileName="UnitTest1.cs" Line="30" Column="58" />
       <File FileName="OLXProduct.cs" Line="1" Column="1" />
@@ -12,13 +12,6 @@
       <File FileName="ExportData.cs" Line="1" Column="1" />
       <File FileName="AnalyzeData.cs" Line="1" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="WebScraper" expanded="True" selected="True" />
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.WebScraper PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
