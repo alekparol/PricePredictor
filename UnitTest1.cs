@@ -38,12 +38,14 @@ namespace Tests
 
         /**
          * Test of GoToCategory() can be done only after initializing a IWebDriver. So this has to be moved to another test.        
-         * NOTE: OLX format for two word category with "i" between is garaze-parkingi so it has to be included in the code.        
+         *      
         */
 
         [Test]
         [TestCase("Rowery")]
         [TestCase("Muzyka i Elektronika")]
+        [TestCase("dziecko")]
+        [TestCase("dasd awdasd sad2")]
         public void TestCategoryNonEmpty(string productCategory)
         {
 
@@ -51,7 +53,7 @@ namespace Tests
             Assert.That(testMainCategory.BaseURL, Is.EqualTo("https://www.olx.pl/"));
 
             Assert.That(testMainCategory.MainCategoryName, Is.EqualTo(productCategory));
-            Assert.That(testMainCategory.MainCategoryURL, Is.EqualTo("https://www.olx.pl/" + productCategory.ToLower() + "/"));
+            Assert.That(testMainCategory.MainCategoryURL, Is.EqualTo("https://www.olx.pl/" + productCategory.Replace(" i ", "-").Replace(" ", "-").ToLower() + "/"));
 
         }
 

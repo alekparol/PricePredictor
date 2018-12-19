@@ -92,20 +92,21 @@ namespace WebScraper
             string[] categoryAuxilliary = productCategory.Split("»");
 
             mainCategoryName = categoryAuxilliary[0].Trim();
-            if (mainCategoryName.Contains(" i "))
-            {
-                mainCategoryURL = baseURL + mainCategoryName.ToLower().Replace(" i ", "-").Replace(" ", "-") + "/";
-            }
-            else
-            {
-                mainCategoryURL = baseURL + mainCategoryName.ToLower().Replace(" ", "-") + "/";
-            }
+            mainCategoryURL = ChangeString(mainCategoryName, baseURL);
 
         }
 
         /* ============= */
         /* Class Methods */
         /* ============= */
+
+        public string ChangeString (string stringToBeChanged, string precidingString)
+        {
+
+            stringToBeChanged = precidingString + stringToBeChanged.ToLower().Replace(" i ", "-").Replace(" ", "-") + "/";
+            return stringToBeChanged;
+
+        }
 
         public void DisplayCategory ()
         {
