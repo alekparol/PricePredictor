@@ -149,6 +149,7 @@ namespace WebScraper
 
         public void ChangeDaysToEnglish()
         {
+
             DateTime currentTime = DateTime.Now;
 
             if (days == "dzisiaj")

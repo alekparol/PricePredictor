@@ -83,11 +83,11 @@ namespace WebScraper
             SubCategory testSubCategory = new SubCategory(productCategory);
             Assert.That(testSubCategory.BaseURL, Is.EqualTo("https://www.olx.pl/"));
 
-            Assert.That(testSubCategory.MainCategoryName, Is.EqualTo(productCategory.Split(" » ")[0].Trim()));
-            Assert.That(testSubCategory.MainCategoryURL, Is.EqualTo("https://www.olx.pl/" + productCategory.Split(" » ")[0].Trim().Replace(" i ", "-").Replace(" ", "-").ToLower() + "/"));
+            Assert.That(testSubCategory.MainCategoryName, Is.EqualTo(productCategory.Split("»")[0].Trim()));
+            Assert.That(testSubCategory.MainCategoryURL, Is.EqualTo("https://www.olx.pl/" + productCategory.Split("»")[0].Trim().Replace(" i ", "-").Replace(" ", "-").ToLower() + "/"));
 
-            Assert.That(testSubCategory.SubCategoryName, Is.EqualTo(productCategory.Split(" » ")[1].Trim()));
-            Assert.That(testSubCategory.SubCategoryURL, Is.EqualTo("https://www.olx.pl/" + productCategory.Split(" » ")[1].Trim().Replace(" i ", "-").Replace(" ", "-").ToLower() + "/"));
+            Assert.That(testSubCategory.SubCategoryName, Is.EqualTo(productCategory.Split("»")[1].Trim()));
+            Assert.That(testSubCategory.SubCategoryURL, Is.EqualTo("https://www.olx.pl/" + productCategory.Split("»")[1].Trim().Replace(" i ", "-").Replace(" ", "-").ToLower() + "/"));
 
         }
 

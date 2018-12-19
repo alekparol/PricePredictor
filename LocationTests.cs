@@ -10,7 +10,7 @@ using System;
 namespace WebScraper
 {
     [TestFixture()]
-    public class DateTests
+    public class LocationTests
     {
         [Test()]
         public void TestCase()
