@@ -31,14 +31,27 @@ namespace Tests
             MainCategory testMainCategory = new MainCategory();
             Assert.That(testMainCategory.BaseURL, Is.EqualTo("https://www.olx.pl/"));
 
-            Assert.That(testMainCategory.MainCategoryName, Is.EqualTo(""));
-            Assert.That(testMainCategory.MainCategoryURL, Is.EqualTo(""));
+            Assert.That(testMainCategory.MainCategoryName, Is.EqualTo(null));
+            Assert.That(testMainCategory.MainCategoryURL, Is.EqualTo(null));
 
         }
 
+        /**
+         * Test of GoToCategory() can be done only after initializing a IWebDriver. So this has to be moved to another test.        
+         * NOTE: OLX format for two word category with "i" between is garaze-parkingi so it has to be included in the code.        
+        */
+
         [Test]
-        public void TestCategoryNonEmpty()
+        [TestCase("Rowery")]
+        [TestCase("Muzyka i Elektronika")]
+        public void TestCategoryNonEmpty(string productCategory)
         {
+
+            MainCategory testMainCategory = new MainCategory(productCategory);
+            Assert.That(testMainCategory.BaseURL, Is.EqualTo("https://www.olx.pl/"));
+
+            Assert.That(testMainCategory.MainCategoryName, Is.EqualTo(productCategory));
+            Assert.That(testMainCategory.MainCategoryURL, Is.EqualTo("https://www.olx.pl/" + productCategory.ToLower() + "/"));
 
         }
 

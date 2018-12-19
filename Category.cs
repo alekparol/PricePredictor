@@ -92,7 +92,14 @@ namespace WebScraper
             string[] categoryAuxilliary = productCategory.Split("»");
 
             mainCategoryName = categoryAuxilliary[0].Trim();
-            mainCategoryURL = baseURL + "/" + mainCategoryName.ToLower().Replace(" ", "-") + "/";
+            if (mainCategoryName.Contains(" i "))
+            {
+                mainCategoryURL = baseURL + mainCategoryName.ToLower().Replace(" i ", "-").Replace(" ", "-") + "/";
+            }
+            else
+            {
+                mainCategoryURL = baseURL + mainCategoryName.ToLower().Replace(" ", "-") + "/";
+            }
 
         }
 
