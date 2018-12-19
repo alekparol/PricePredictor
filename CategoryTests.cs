@@ -72,5 +72,24 @@ namespace WebScraper
 
         }
 
+        [Test]
+        [TestCase("Rowery » Rowery Gorskie")]
+        [TestCase("Muzyka i Elektronika » Zabawki i Costam")]
+        [TestCase("dziecko » ")]
+        [TestCase(" » dasd awdasd sad2")]
+        public void TestCategoryNonEmpty(string productCategory)
+        {
+
+            SubCategory testSubCategory = new SubCategory(productCategory);
+            Assert.That(testSubCategory.BaseURL, Is.EqualTo("https://www.olx.pl/"));
+
+            Assert.That(testSubCategory.MainCategoryName, Is.EqualTo(productCategory.Split(" » ")[0].Trim()));
+            Assert.That(testSubCategory.MainCategoryURL, Is.EqualTo("https://www.olx.pl/" + productCategory.Split(" » ")[0].Trim().Replace(" i ", "-").Replace(" ", "-").ToLower() + "/"));
+
+            Assert.That(testSubCategory.SubCategoryName, Is.EqualTo(productCategory.Split(" » ")[1].Trim()));
+            Assert.That(testSubCategory.SubCategoryURL, Is.EqualTo("https://www.olx.pl/" + productCategory.Split(" » ")[1].Trim().Replace(" i ", "-").Replace(" ", "-").ToLower() + "/"));
+
+        }
+
     }
 }

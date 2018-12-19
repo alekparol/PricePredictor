@@ -9,14 +9,21 @@ namespace WebScraper
 {
 
     /**
+     * This file contains classes which are storing relevant IWebElements from pages used in out program.
+     * 
+    */
+
+    /**
      * TODO: Make SearchPage and ProductPage to inherit from MainPage. There are elements which are the same on those sites.   
      * TODO: Make a class representing search bar and move all properties to it. 
+     * TODO: Research if "Page" class should be efficiently changed to an interface.     
      * NOTE: Main Page and Search Page have the same elements: searchField, locationField and submitButton, although on the searchField there are few more which could be 
      * helpful. 
      * NOTE: Product Page is somehow different, therefore there should be another class from which it could inherit.     
      * NOTE: Address of the page after search for a product changes with oferty/q-productName if there is no specified location of the search, and /productLocation/q-productName 
      * if it is specified.     
     */
+
 
     public class Page
     {
