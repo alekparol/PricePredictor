@@ -9,6 +9,8 @@ namespace WebScraper
     {
 
         /**
+         * NOTE: Such category as "Nieruchomosci" has also subsubcategory - "sprzedaz", "wynajem", "zamiania" and "wszystkie".
+         * TODO: 
          * TODO: Test Category URL.      
          * TODO: Move all functions which are used in differents modules to the one utility component. OR use changeName(), changeLocalation() etc. as a method of page class, 
          * as those methods do the same job - baseURL + / + component_first + / component_second + /.     

@@ -7,6 +7,11 @@ using System.Threading;
 
 namespace WebScraper
 {
+
+    /**
+     * TODO: Make locationRange to work.    
+    */
+
     public class SearchBar
     {
 
@@ -116,6 +121,7 @@ namespace WebScraper
 
         public void TypeProductName (string productName)
         {
+
             searchField.SendKeys(productName);
             Thread.Sleep(1000);
 
@@ -131,6 +137,7 @@ namespace WebScraper
 
         public void TypeLocation (string productLocation)
         {
+
             locationInputField.SendKeys(productLocation);
             Thread.Sleep(1000);
 
@@ -145,9 +152,13 @@ namespace WebScraper
 
     }
 
-    public class SearchBarSearch : SearchBar
+    public class SearchBarSearch:SearchBar
     {
-
+        /**
+         * TODO: Add sanity check if driver's url is matching the regex pattern, to prevent program's crash.        
+         * NOTE: There are plenty other elements on the searchPage which could be helpful on ther stages of the projects, but all elements are related to some category, so
+         * it would be pain in the ass trying to load and use them.
+        */
         private IWebElement locationRange;
 
         /* =================== */
@@ -184,14 +195,22 @@ namespace WebScraper
 
             searchField = fieldSet.FindElement(By.Id("search-text"));
             locationInputField = fieldSet.FindElement(By.Id("cityField"));
-            submitButton = fieldSet.FindElement(By.Id("search-submit"));
 
+            locationRange = fieldSet.FindElement(By.Id("distanceSelect"));
+            submitButton = fieldSet.FindElement(By.Id("search-submit"));
 
         }
 
         /* ============= */
         /* Class Methods */
         /* ============= */
+
+        public void SelectLocationRange ()
+        {
+            /**
+             * It has to be done with SelectElement object.           
+            */
+        }
 
     }
 

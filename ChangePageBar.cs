@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace WebScraper
 {
-    public class ChangePageBar
+    public class PageBar
     {
 
         private List<IWebElement> pageChangeBar; /* Web element which relates to whole page count bar on the bottom of the page - that is "previous", "next", list of pages. */
@@ -73,25 +73,41 @@ namespace WebScraper
         /* ============ */
 
 
-        public ChangePageBar()
+        public PageBar ()
         {
 
         }
 
-        public ChangePageBar(IWebDriver driver)
+        public PageBar (IWebDriver driver)
         {
 
             pageChangeBar = new List<IWebElement>(driver.FindElements(By.ClassName("pager")));
             pageNextPrev = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("pageNextPrev")));
 
-            if (pageNextPrev.Count == 2)
+            listOfPages = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("fleft")));
+
+            if (listOfPages.Count > 0)
+            {
+                SetDerivedElements();
+            }
+
+        }
+
+        /* ============= */
+        /* Class Methods */
+        /* ============= */
+
+        public void SetDerivedElements()
+        {
+
+            if (pageNextPrev.Count == 2) // Check if pageChangeBar[0] != null would work.
             {
                 pageNext = pageNextPrev[0];
                 pagePrevious = pageNextPrev[1];
 
             }
 
-            if (pageNext != null)
+            /*if (pageNext != null)
             {
                 isNext = pageNext.GetAttribute("href") != null;
             }
@@ -99,12 +115,14 @@ namespace WebScraper
             if (pagePrevious != null)
             {
                 isPrevious = pagePrevious.GetAttribute("href") != null;
-            }
+            }*/
 
-            listOfPages = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("fleft")));
+            UpdateNext();
+            UpdatePrevious();
+
             numberOfPages = listOfPages.Count;
 
-            if (listOfPages.Count == 2)
+            if (listOfPages.Count > 0)
             {
                 firstPage = listOfPages[0];
                 lastPage = listOfPages[numberOfPages - 1];
@@ -112,7 +130,31 @@ namespace WebScraper
             }
 
             currentPage = listOfPages.Find((IWebElement obj) => obj.GetAttribute("data-cy") == "page-link-current");
-            // pageNumber = Int32.Parse(currentPage.Text); To be debugged.
+            //pageNumber = listOfPages.IndexOf(currentPage);
+
+        }
+
+        public bool UpdateNext ()
+        {
+
+            if (pageNext != null)
+            {
+                isNext = pageNext.GetAttribute("href") != null;
+            }
+
+            return isNext;
+
+        }
+
+        public bool UpdatePrevious()
+        {
+
+            if (pagePrevious != null)
+            {
+                isPrevious = pagePrevious.GetAttribute("href") != null;
+            }
+
+            return isPrevious;
 
         }
 
