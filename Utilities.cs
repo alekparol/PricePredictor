@@ -10,7 +10,13 @@ namespace OLXScraper
 {
     public class Utilities
     {
+        public string ChangeString(string stringToBeChanged, string precidingString)
+        {
 
+            stringToBeChanged = precidingString + stringToBeChanged.ToLower().Replace(" i ", "-").Replace(" ", "-") + "/";
+            return stringToBeChanged;
+
+        }
         /**
          * 
          * About class name "wrap" - there are two kinds of elements on the OLX page: 

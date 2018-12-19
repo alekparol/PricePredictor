@@ -180,13 +180,20 @@ namespace WebScraper
         }
 
 
-        public SubCategory (string productCategory):base(productCategory)
+        public SubCategory (string productCategory)
         {
-        
+
             string[] categoryAuxilliary = productCategory.Split("»");
 
-            subCategoryName = categoryAuxilliary[1].Trim();
-            subCategoryURL = mainCategoryURL + subCategoryName.ToLower().Replace(" ", "-") + "/";
+            mainCategoryName = categoryAuxilliary[0].Trim();
+            mainCategoryURL = ChangeString(mainCategoryName, baseURL);
+
+            if (categoryAuxilliary.Length == 2)
+            {
+
+                subCategoryName = categoryAuxilliary[1].Trim();
+                subCategoryURL = ChangeString(subCategoryURL, mainCategoryURL);
+            }
 
         }
 
