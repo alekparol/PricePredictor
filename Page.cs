@@ -24,6 +24,14 @@ namespace WebScraper
      * if it is specified.     
     */
 
+    /**
+     * Description: This class contains classes related to pages in each step of the program. Those classes have properties which for which models are specific elements
+     * of those pages, which will be used during program run. This class is parted onto four:
+     * 1. Class Page which is most general class of them all, which only contains baseURL string to some homepage (in this case it is homepage of OLX) and class method
+     *    which navigates webdriver to this URL address. Possibly it should be changed to be Interface or abstract class. 
+     * 2. Class MainPage
+    */
+        
 
     public class Page
     {
@@ -161,7 +169,7 @@ namespace WebScraper
 
     }
 
-    public class SearchPage : Page
+    public class SearchPage:Page
     {
 
         /**

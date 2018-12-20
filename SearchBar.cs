@@ -152,7 +152,7 @@ namespace WebScraper
 
     }
 
-    public class SearchBarSearch:SearchBar
+    public class SearchBarSearch:SearchBarMain
     {
         /**
          * TODO: Add sanity check if driver's url is matching the regex pattern, to prevent program's crash.        

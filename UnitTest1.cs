@@ -34,6 +34,7 @@ namespace Tests
             MainPage mainPage = new MainPage(chromeDriver);
             string nextPageURL = mainPage.SearchProduct("marshall major");
             SearchPage searchPage = new SearchPage(chromeDriver);
+            ProductsList productsList = new ProductsList(chromeDriver);
 
             Thread.Sleep(100);
 
@@ -60,7 +61,7 @@ namespace Tests
 
             MainPage mainPage = new MainPage(chromeDriver);
             string nextPageURL = mainPage.SearchProduct("ns eccentric");
-            SearchPage searchPage = new SearchPage(chromeDriver);
+            SearchPage searchPage = new SearchPage();
 
             Thread.Sleep(100);
 
