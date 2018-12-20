@@ -15,8 +15,6 @@ namespace WebScraper
         private NextPrev nextPrev;
         private PageList pageList;
 
-        private List<IWebElement> pageNextPrev;  /* Web element which relates to elements of the class containing "previous" and "next" links. This is subset of pageChangeBar. */
-
         private IWebElement pageNext;
         private IWebElement pagePrevious;
 
@@ -24,11 +22,7 @@ namespace WebScraper
         private IWebElement currentPage;
         private IWebElement lastPage;
 
-        private List<IWebElement> listOfPages;
         private static int numberOfPages;
-
-        private bool isNext;
-        private bool isPrevious;
 
         /* =================== */
         /* Getters and Setters */
@@ -73,31 +67,6 @@ namespace WebScraper
 
         }
 
-        public List<IWebElement> PageNextPrev
-        {
-            get
-            {
-                return pageNextPrev;
-            }
-            set
-            {
-                pageNextPrev = value;
-            }
-        }
-
-        public List<IWebElement> ListOfPages
-        {
-            get
-            {
-                return listOfPages;
-            }
-            set
-            {
-                listOfPages = value;
-            }
-        }
-
-
         /* ============ */
         /* Constructors */
         /* ============ */
@@ -115,11 +84,7 @@ namespace WebScraper
             nextPrev = new NextPrev(driver, pageChangeBar);
             pageList = new PageList(driver, pageChangeBar);
 
-            pageNextPrev = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("pageNextPrev")));
-
-            listOfPages = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("fleft")));
-
-            if (listOfPages.Count > 0)
+            if (pageList.ListOfPages.Count > 0)
             {
                 SetDerivedElements();
             }
@@ -132,63 +97,26 @@ namespace WebScraper
 
         public void SetDerivedElements()
         {
+            pageNext = nextPrev.PageNext;
+            pagePrevious = nextPrev.PagePrevious;
 
-            if (pageNextPrev.Count == 2) // Check if pageChangeBar[0] != null would work.
-            {
-                pageNext = pageNextPrev[0];
-                pagePrevious = pageNextPrev[1];
+            numberOfPages = pageList.NumberOfPages;
+            firstPage = pageList.FirstPage;
+            lastPage = pageList.LastPage;
 
-            }
-
-            /*if (pageNext != null)
-            {
-                isNext = pageNext.GetAttribute("href") != null;
-            }
-
-            if (pagePrevious != null)
-            {
-                isPrevious = pagePrevious.GetAttribute("href") != null;
-            }*/
-
-            UpdateNext();
-            UpdatePrevious();
-
-            numberOfPages = listOfPages.Count;
-
-            if (listOfPages.Count > 0)
-            {
-                firstPage = listOfPages[0];
-                lastPage = listOfPages[numberOfPages - 1];
-
-            }
-
-            currentPage = listOfPages.Find((IWebElement obj) => obj.GetAttribute("data-cy") == "page-link-current");
+            currentPage = pageList.CurrentPage;
             //pageNumber = listOfPages.IndexOf(currentPage);
 
         }
 
         public bool UpdateNext ()
         {
-
-            if (pageNext != null)
-            {
-                isNext = pageNext.GetAttribute("href") != null;
-            }
-
-            return isNext;
-
+            return nextPrev.IsNext();
         }
 
         public bool UpdatePrevious()
         {
-
-            if (pagePrevious != null)
-            {
-                isPrevious = pagePrevious.GetAttribute("href") != null;
-            }
-
-            return isPrevious;
-
+            return nextPrev.IsPrevious();
         }
 
     }

@@ -69,12 +69,12 @@ namespace WebScraper
         /* Constructors */
         /* ============ */
 
-        public NextPrev()
+        public NextPrev ()
         {
 
         }
 
-        public NextPrev(IWebDriver driver, List<IWebElement> pageChangeBar)
+        public NextPrev (IWebDriver driver, List<IWebElement> pageChangeBar)
         {
 
             pageNextPrev = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("pageNextPrev")));

@@ -1,23 +1,13 @@
 ﻿<Properties StartupConfiguration="{08D54AEB-FC29-4CFE-8BAE-11584E4ED519}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="NextPrev.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OLXProduct.cs">
     <Files>
-      <File FileName="Category.cs" Line="13" Column="18" />
-      <File FileName="CategoryTests.cs" Line="10" Column="21" />
-      <File FileName="Date.cs" Line="1" Column="1" />
-      <File FileName="DateTests.cs" Line="10" Column="21" />
-      <File FileName="Location.cs" Line="22" Column="1" />
-      <File FileName="LocationTests.cs" Line="19" Column="6" />
-      <File FileName="Page.cs" Line="129" Column="13" />
-      <File FileName="SearchBar.cs" Line="148" Column="1" />
-      <File FileName="ChangePageBar.cs" Line="133" Column="16" />
-      <File FileName="Price.cs" Line="1" Column="1" />
-      <File FileName="UnitTest1.cs" Line="40" Column="53" />
+      <File FileName="Page.cs" Line="269" Column="44" />
+      <File FileName="SearchBar.cs" Line="58" Column="1" />
+      <File FileName="ChangePageBar.cs" Line="145" Column="44" />
+      <File FileName="PageList.cs" Line="2" Column="34" />
+      <File FileName="NextPrev.cs" Line="41" Column="10" />
+      <File FileName="UnitTest1.cs" Line="28" Column="15" />
       <File FileName="OLXProduct.cs" Line="1" Column="1" />
-      <File FileName="Utilities.cs" Line="21" Column="12" />
-      <File FileName="ExportData.cs" Line="1" Column="1" />
-      <File FileName="AnalyzeData.cs" Line="1" Column="1" />
-      <File FileName="PageList.cs" Line="6" Column="1" />
-      <File FileName="NextPrev.cs" Line="6" Column="9" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
@@ -25,13 +15,11 @@
           <Node name="WebScraper" expanded="True">
             <Node name="WebScraper" expanded="True">
               <Node name="Tests" expanded="True">
-                <Node name="Tests" expanded="True">
-                  <Node name="Test1" selected="True" />
-                </Node>
+                <Node name="Tests" expanded="True" />
               </Node>
               <Node name="WebScraper" expanded="True">
                 <Node name="CategoryTests" expanded="True" />
-                <Node name="DateTests" expanded="True" />
+                <Node name="DateTests" expanded="True" selected="True" />
                 <Node name="LocationTests" expanded="True" />
               </Node>
             </Node>

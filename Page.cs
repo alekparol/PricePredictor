@@ -30,7 +30,6 @@ namespace WebScraper
 
         protected string baseURL = "https://www.olx.pl";
 
-        protected SearchBarMain searchBar;
         protected IWebElement searchField;
         protected IWebElement locationInputField;
         protected IWebElement submitButton;
@@ -61,13 +60,6 @@ namespace WebScraper
         public Page (IWebDriver driver)
         {
 
-            GoToHomePage(driver);
-            searchBar = new SearchBarMain (driver);
-
-            /*searchField = driver.FindElement(By.Id("headerSearch"));
-            locationInputField = driver.FindElement(By.Id("cityField"));
-            submitButton = driver.FindElement(By.Id("submit-searchmain"));*/
-
         }
 
         /* ============= */
@@ -86,6 +78,7 @@ namespace WebScraper
     public class MainPage:Page
     {
 
+        private SearchBarMain searchBar;
         private string nextPageURL;
 
         /* =================== */
@@ -118,6 +111,9 @@ namespace WebScraper
         public MainPage (IWebDriver driver):base(driver)
         {
 
+            GoToHomePage(driver);
+            searchBar = new SearchBarMain(driver);
+
         }
 
         /* ============= */
@@ -129,8 +125,6 @@ namespace WebScraper
 
             searchBar.TypeProductName(productName);
             searchBar.SubmitSearch();
-            //searchField.SendKeys(productName);
-            //submitButton.Click();
 
             nextPageURL = baseURL + "/oferty/q-" + ChangeName(productName) + "/"; 
             return nextPageURL;
@@ -143,11 +137,6 @@ namespace WebScraper
             searchBar.TypeProductName(productName);
             searchBar.TypeLocation(productLocation);
             searchBar.SubmitSearch();
-            //searchField.SendKeys(productName);
-            //locationInputField.SendKeys(productLocation);
-
-            //Thread.Sleep(1000);
-            //submitButton.Click();
 
             nextPageURL = baseURL + "/" + ChangeLocation(productLocation) + "/q-" + ChangeName(productName) + "/";  
             return nextPageURL;
@@ -208,6 +197,9 @@ namespace WebScraper
         private bool isNext;
         private bool isPrevious;
 
+        private SearchBarSearch searchBar;
+        private PageBar pageBar;
+
 
         /* =================== */
         /* Getters and Setters */
@@ -265,7 +257,8 @@ namespace WebScraper
         public SearchPage(IWebDriver driver)
         {
 
-            SearchBarSearch searchBar = new SearchBarSearch(driver);
+            searchBar = new SearchBarSearch(driver);
+            pageBar = new PageBar(driver);
 
 
             pageChangeBar = new List<IWebElement>(driver.FindElements(By.ClassName("pager")));
