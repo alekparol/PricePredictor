@@ -172,18 +172,9 @@ namespace WebScraper
     public class SearchPage:Page
     {
 
-        /**
-         * TODO: Move "searchCount" and "pageElemets" down below. 
-         * TODO: DisplayAll() displays current page as "-1" for the first page, so it has to be debugged and changed.        
-         * TODO: Leave only those properties which are necessary for others to be initialized and those second group move to smaller functions.        
-         * Note: We can delete some unnecessary elements, which could be accessed by a single method, but it has to be checked if it affect readability of the code. 
-         */
-
-        private int searchCount;
-        private int pageElements;
-
         private SearchBarSearch searchBar;
         private PageBar pageBar;
+        private ProductsList productsList;
 
 
         /* =================== */
@@ -196,10 +187,6 @@ namespace WebScraper
             {
                 return searchBar;
             }
-            set
-            {
-                searchBar = value;
-            }
 
         }
 
@@ -209,9 +196,14 @@ namespace WebScraper
             {
                 return pageBar;
             }
-            set
+
+        }
+
+        public ProductsList ProductsList
+        {
+            get
             {
-                pageBar = value;
+                return productsList;
             }
 
         }
@@ -233,6 +225,7 @@ namespace WebScraper
             searchBar = new SearchBarSearch(driver);
             pageBar = new PageBar(driver);
 
+            productsList = new ProductsList(driver);
 
         }
 
@@ -240,56 +233,18 @@ namespace WebScraper
         /* Class Methods */
         /* ============= */
 
-        public void CountResults(IWebDriver driver)
-        {
-
-            string numberOfResults = driver.FindElement(By.XPath("//*[@id=\"topLink\"]/div/ul[1]/li[1]/span")).Text;
-            if (numberOfResults == string.Empty)
-            {
-
-                numberOfResults = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td/div[1]/p")).Text;
-
-                Regex foundResults = new Regex("\\d+");
-
-                Match matchNumber = foundResults.Match(numberOfResults);
-                searchCount = Int32.Parse(matchNumber.ToString());
-
-                Console.WriteLine(matchNumber);
-            }
-            else
-            {
-
-                Regex foundResults = new Regex("\\d+");
-
-                Match matchNumber = foundResults.Match(numberOfResults);
-                searchCount = Int32.Parse(matchNumber.ToString());
-
-                Console.WriteLine(matchNumber);
-
-            }
-
-
-        }
-
-        public int CountPageElements(IWebDriver driver)
-        {
-
-            List<IWebElement> listOfProducts = new List<IWebElement>(driver.FindElements(By.ClassName("wrap")));
-            pageElements = listOfProducts.Count;
-
-            Console.WriteLine(pageElements);
-
-            return pageElements;
-
-        }
 
         public void DisplayAll()
         {
 
             Console.WriteLine("{0} is that there is a next page link.", pageBar.NextPrev.IsNext());
             Console.WriteLine("{0} is that there is a previous page link.", pageBar.NextPrev.IsPrevious());
+
             Console.WriteLine("There is: {0} pages with search result.", pageBar.PageList.NumberOfPages);
             Console.WriteLine("Current page number is: {0}.", pageBar.PageList.CurrentPageNumber());
+
+            Console.WriteLine("There is: {0} search results.", productsList.NumberOfResults);
+            Console.WriteLine("Currently on the page is displayed: {0} products.", productsList.ProductsOnPage);
 
         }
 

@@ -13,7 +13,7 @@ namespace WebScraper
         private int numberOfResults;
         private int productsOnPage;
 
-        private Regex foundResults = new Regex("\\d+");
+        private Regex foundResults = new Regex("\\d+\\s{1}?\\d+"); // Changed because some number are in format X XXX.
 
         /* =================== */
         /* Getters and Setters */
@@ -59,21 +59,20 @@ namespace WebScraper
         public ProductsList(IWebDriver driver)
         {
 
-            string numberOfResults = driver.FindElement(By.XPath("//*[@id=\"topLink\"]/div/ul[1]/li[1]/span")).Text;
-            if (numberOfResults == string.Empty)
+            string nrb = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td/div[1]/p")).Text;
+            //*[@id="offers_table"]/tbody/tr[1]/td/div[1]/p
+            if (nrb == string.Empty)
             {
+           
 
-                numberOfResults = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td/div[1]/p")).Text;
-                Match matchNumber = foundResults.Match(numberOfResults);
-
-                this.numberOfResults = Int32.Parse(matchNumber.ToString());
-                Console.WriteLine(matchNumber);
+                numberOfResults = 0;
+                Console.WriteLine(nrb);
 
             }
             else
             {
             
-                Match matchNumber = foundResults.Match(numberOfResults);
+                Match matchNumber = foundResults.Match(nrb);
                 this.numberOfResults = Int32.Parse(matchNumber.ToString());
 
                 Console.WriteLine(matchNumber);

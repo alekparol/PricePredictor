@@ -77,12 +77,17 @@ namespace WebScraper
         public NextPrev (IWebDriver driver, List<IWebElement> pageChangeBar)
         {
 
-            pageNextPrev = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("pageNextPrev")));
-
-            if (pageNextPrev.Count == 2) // Check if pageChangeBar[0] != null would work.
+            if (pageChangeBar != null)
             {
-                pageNext = pageNextPrev[0];
-                pagePrevious = pageNextPrev[1];
+
+                pageNextPrev = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("pageNextPrev")));
+
+                if (pageNextPrev.Count == 2) // Check if pageChangeBar[0] != null would work.
+                {
+                    pageNext = pageNextPrev[0];
+                    pagePrevious = pageNextPrev[1];
+
+                }
 
             }
 

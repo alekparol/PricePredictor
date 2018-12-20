@@ -1,19 +1,30 @@
 ﻿<Properties StartupConfiguration="{08D54AEB-FC29-4CFE-8BAE-11584E4ED519}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="ProductsList.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UnitTest1.cs">
     <Files>
-      <File FileName="Page.cs" Line="33" Column="7" />
-      <File FileName="ProductsList.cs" Line="58" Column="10" />
+      <File FileName="Page.cs" Line="256" Column="1" />
+      <File FileName="ProductsList.cs" Line="88" Column="10" />
       <File FileName="SearchBar.cs" Line="156" Column="6" />
       <File FileName="PageBar.cs" Line="78" Column="60" />
-      <File FileName="PageList.cs" Line="120" Column="10" />
+      <File FileName="PageList.cs" Line="101" Column="102" />
       <File FileName="NextPrev.cs" Line="79" Column="1" />
-      <File FileName="UnitTest1.cs" Line="64" Column="1" />
+      <File FileName="UnitTest1.cs" Line="115" Column="31" />
       <File FileName="OLXProduct.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
-          <Node name="WebScraper" expanded="True" selected="True" />
+          <Node name="WebScraper" expanded="True">
+            <Node name="WebScraper" expanded="True">
+              <Node name="Tests" expanded="True">
+                <Node name="Tests" expanded="True" />
+              </Node>
+              <Node name="WebScraper" expanded="True">
+                <Node name="CategoryTests" expanded="True" />
+                <Node name="DateTests" expanded="True" />
+                <Node name="LocationTests" expanded="True" selected="True" />
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>

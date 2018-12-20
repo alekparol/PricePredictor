@@ -11,7 +11,7 @@ namespace WebScraper
     {
 
         private List<IWebElement> listOfPages;
-        private static int numberOfPages;
+        private int numberOfPages;
 
         private IWebElement firstPage;
         private IWebElement currentPage;
@@ -98,7 +98,7 @@ namespace WebScraper
         public PageList (IWebDriver driver, List <IWebElement> pageChangeBar)
         {
        
-            listOfPages = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("fleft")));
+            listOfPages = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("item")));
             numberOfPages = listOfPages.Count;
 
             if (numberOfPages > 0)
