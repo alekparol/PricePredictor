@@ -17,6 +17,9 @@ namespace WebScraper
         private IWebElement currentPage;
         private IWebElement lastPage;
 
+        private int firstPageNumber;
+        private int lastPageNumber;
+
         /* =================== */
         /* Getters and Setters */
         /* =================== */
@@ -86,6 +89,32 @@ namespace WebScraper
 
         }
 
+        public int FirstPageNumber
+        {
+            get
+            {
+                return firstPageNumber;
+            }
+            set
+            {
+                firstPageNumber = value;
+            }
+
+        }
+
+        public int LastPageNumber
+        {
+            get
+            {
+                return lastPageNumber;
+            }
+            set
+            {
+                lastPageNumber = value;
+            }
+
+        }
+
         /* ============ */
         /* Constructors */
         /* ============ */
@@ -105,6 +134,9 @@ namespace WebScraper
             {
                 firstPage = listOfPages[0];
                 lastPage = listOfPages[numberOfPages - 1];
+
+                firstPageNumber = Int32.Parse(firstPage.Text);
+                lastPageNumber = Int32.Parse(lastPage.Text);
 
                 currentPage = listOfPages.Find((IWebElement obj) => obj.GetAttribute("data-cy") == "page-link-current");
 

@@ -240,7 +240,7 @@ namespace WebScraper
             Console.WriteLine("{0} is that there is a next page link.", pageBar.NextPrev.IsNext());
             Console.WriteLine("{0} is that there is a previous page link.", pageBar.NextPrev.IsPrevious());
 
-            Console.WriteLine("There is: {0} pages with search result.", pageBar.PageList.NumberOfPages);
+            Console.WriteLine("There is: {0} pages with search result.", pageBar.PageList.LastPageNumber); // It cannot be numberOfPages because it is related to number of webelements, not their value.
             Console.WriteLine("Current page number is: {0}.", pageBar.PageList.CurrentPageNumber());
 
             Console.WriteLine("There is: {0} search results.", productsList.NumberOfResults);
