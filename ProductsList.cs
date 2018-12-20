@@ -13,6 +13,7 @@ namespace WebScraper
         private int numberOfResults;
         private int productsOnPage;
 
+        private List<IWebElement> listOfProducts;
         private Regex foundResults = new Regex("\\d+\\s?\\d+"); // Changed because some number are in format X XXX.
 
         /* =================== */
@@ -59,31 +60,28 @@ namespace WebScraper
         public ProductsList(IWebDriver driver)
         {
 
-            string nrb = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td/div[1]/p")).Text;
-            if (nrb == string.Empty)
+            string messageResults = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td/div[1]/p")).Text;
+
+            if (messageResults == string.Empty)
             {
-           
-
                 numberOfResults = 0;
-                Console.WriteLine(nrb);
-
             }
             else
             {
             
-                Match matchNumber = foundResults.Match(nrb);
+                Match matchNumber = foundResults.Match(messageResults);
                 numberOfResults = Int32.Parse(matchNumber.ToString().Replace(" ",""));
-
-                Console.WriteLine(matchNumber);
 
             }
 
-            List<IWebElement> listOfProducts = new List<IWebElement>(driver.FindElements(By.ClassName("wrap")));
+            listOfProducts = new List<IWebElement>(driver.FindElements(By.ClassName("wrap")));
             productsOnPage = listOfProducts.Count;
 
-            Console.WriteLine(productsOnPage);
-
         }
+
+        /* ============= */
+        /* Class Methods */
+        /* ============= */
 
     }
 }

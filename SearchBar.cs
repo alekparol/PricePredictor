@@ -32,10 +32,6 @@ namespace WebScraper
             {
                 return fieldSet;
             }
-            set
-            {
-                fieldSet = value;
-            }
 
         }
 
@@ -45,10 +41,6 @@ namespace WebScraper
             get
             {
                 return searchField;
-            }
-            set
-            {
-                searchField = value;
             }
 
         }
@@ -60,10 +52,6 @@ namespace WebScraper
             {
                 return locationInputField;
             }
-            set
-            {
-                locationInputField = value;
-            }
 
         }
 
@@ -73,10 +61,6 @@ namespace WebScraper
             get
             {
                 return submitButton;
-            }
-            set
-            {
-                submitButton = value;
             }
 
         }
@@ -172,10 +156,6 @@ namespace WebScraper
             get
             {
                 return locationRange;
-            }
-            set
-            {
-                locationRange = value;
             }
 
         }

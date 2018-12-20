@@ -28,10 +28,7 @@ namespace WebScraper
             {
                 return pageChangeBar;
             }
-            set
-            {
-                pageChangeBar = value;
-            }
+
         }
 
         public NextPrev NextPrev
@@ -39,10 +36,6 @@ namespace WebScraper
             get
             {
                 return nextPrev;
-            }
-            set
-            {
-                nextPrev = value;
             }
 
         }
@@ -52,10 +45,6 @@ namespace WebScraper
             get
             {
                 return pageList;
-            }
-            set
-            {
-                pageList = value;
             }
 
         }

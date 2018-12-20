@@ -190,20 +190,20 @@ namespace WebScraper
 
         }
 
-        public PageBar PageBar
-        {
-            get
-            {
-                return pageBar;
-            }
-
-        }
-
         public ProductsList ProductsList
         {
             get
             {
                 return productsList;
+            }
+
+        }
+
+        public PageBar PageBar
+        {
+            get
+            {
+                return pageBar;
             }
 
         }
@@ -223,9 +223,9 @@ namespace WebScraper
         {
 
             searchBar = new SearchBarSearch(driver);
-            pageBar = new PageBar(driver);
-
             productsList = new ProductsList(driver);
+
+            pageBar = new PageBar(driver);
 
         }
 

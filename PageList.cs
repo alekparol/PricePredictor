@@ -30,10 +30,6 @@ namespace WebScraper
             {
                 return listOfPages;
             }
-            set
-            {
-                listOfPages = value;
-            }
 
         }
 
@@ -42,10 +38,6 @@ namespace WebScraper
             get
             {
                 return numberOfPages;
-            }
-            set
-            {
-                numberOfPages = value;
             }
 
         }

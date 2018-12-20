@@ -127,5 +127,35 @@ namespace Tests
 
         }
 
+        [Test]
+        public void Test5()
+        {
+            IWebDriver chromeDriver = new ChromeDriver();
+            chromeDriver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(2);
+
+            MainPage mainPage = new MainPage(chromeDriver);
+            string nextPageURL = mainPage.SearchProduct("telefon", "Warszawa");
+            SearchPage searchPage = new SearchPage(chromeDriver);
+
+            Thread.Sleep(100);
+            OLXProduct[] product = new OLXProduct[searchPage.ProductsList.ProductsOnPage];
+
+            Assert.That(nextPageURL, Is.EqualTo(chromeDriver.Url));
+            for (int i = 0; i < searchPage.ProductsList.ProductsOnPage; i++)
+            {
+                product[i] = new OLXProduct(chromeDriver, i);
+                product[i].DisplayProductInfo();
+            }
+
+            searchPage.DisplayAll();
+            /*for (int i = 4; i < 7; i ++)
+            {
+                product = new OLXProduct(chromeDriver, i);
+
+            }*/
+            chromeDriver.Close();
+
+        }
+
     }
 }
