@@ -159,6 +159,7 @@ namespace WebScraper
          * NOTE: There are plenty other elements on the searchPage which could be helpful on ther stages of the projects, but all elements are related to some category, so
          * it would be pain in the ass trying to load and use them.
         */
+
         private IWebElement locationRange;
 
         /* =================== */

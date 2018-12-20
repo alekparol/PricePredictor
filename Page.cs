@@ -30,10 +30,6 @@ namespace WebScraper
 
         protected string baseURL = "https://www.olx.pl";
 
-        protected IWebElement searchField;
-        protected IWebElement locationInputField;
-        protected IWebElement submitButton;
-
         /* =================== */
         /* Getters and Setters */
         /* =================== */
@@ -175,27 +171,8 @@ namespace WebScraper
          * Note: We can delete some unnecessary elements, which could be accessed by a single method, but it has to be checked if it affect readability of the code. 
          */
 
-        private List<IWebElement> pageChangeBar; /* Web element which relates to whole page count bar on the bottom of the page - that is "previous", "next", list of pages. */
-        private List<IWebElement> pageNextPrev;  /* Web element which relates to elements of the class containing "previous" and "next" links. This is subset of pageChangeBar. */
-
-        private List<IWebElement> listOfPages;
-
-        private IWebElement pageNext;
-        private IWebElement pagePrevious;
-
-        private IWebElement firstPage;
-        private IWebElement currentPage;
-        private IWebElement lastPage;
-
         private int searchCount;
         private int pageElements;
-
-        private static int numberOfPages;
-
-        private int pageNumber;
-
-        private bool isNext;
-        private bool isPrevious;
 
         private SearchBarSearch searchBar;
         private PageBar pageBar;
@@ -205,43 +182,31 @@ namespace WebScraper
         /* Getters and Setters */
         /* =================== */
 
-
-        public List<IWebElement> PageChangeBar
+        public SearchBarSearch SearchBar
         {
             get
             {
-                return pageChangeBar;
+                return searchBar;
             }
             set
             {
-                pageChangeBar = value;
+                searchBar = value;
             }
+
         }
 
-        public List<IWebElement> PageNextPrev
+        public PageBar PageBar
         {
             get
             {
-                return pageNextPrev;
+                return pageBar;
             }
             set
             {
-                pageNextPrev = value;
+                pageBar = value;
             }
-        }
 
-        public List<IWebElement> ListOfPages
-        {
-            get
-            {
-                return listOfPages;
-            }
-            set
-            {
-                listOfPages = value;
-            }
         }
-
 
         /* ============ */
         /* Constructors */
@@ -261,41 +226,7 @@ namespace WebScraper
             pageBar = new PageBar(driver);
 
 
-            pageChangeBar = new List<IWebElement>(driver.FindElements(By.ClassName("pager")));
-            pageNextPrev = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("pageNextPrev")));
-
-            if (pageNextPrev.Count == 2)
-            {
-                pageNext = pageNextPrev[0];
-                pagePrevious = pageNextPrev[1];
-
-            }
-
-            if (pageNext != null)
-            {
-                isNext = pageNext.GetAttribute("href") != null;
-            }
-
-            if (pagePrevious != null)
-            {
-                isPrevious = pagePrevious.GetAttribute("href") != null;
-            }
-
-            listOfPages = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("fleft")));
-            numberOfPages = listOfPages.Count;
-
-            if (listOfPages.Count == 2)
-            {
-                firstPage = listOfPages[0];
-                lastPage = listOfPages[numberOfPages - 1];
-
-            }
-
-            currentPage = listOfPages.Find((IWebElement obj) => obj.GetAttribute("data-cy") == "page-link-current");
-            // pageNumber = Int32.Parse(currentPage.Text); To be debugged.
-
         }
-
 
         /* ============= */
         /* Class Methods */
@@ -304,7 +235,7 @@ namespace WebScraper
         public void CountResults(IWebDriver driver)
         {
 
-            string numberOfResults = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td//div[2]/h2")).Text;
+            string numberOfResults = driver.FindElement(By.XPath("//*[@id=\"topLink\"]/div/ul[1]/li[1]/span")).Text;
             if (numberOfResults == string.Empty)
             {
 
@@ -347,10 +278,10 @@ namespace WebScraper
         public void DisplayAll()
         {
 
-            Console.WriteLine(isNext);
-            Console.WriteLine(isPrevious);
-            Console.WriteLine(numberOfPages);
-            Console.WriteLine(pageNumber);
+            Console.WriteLine("{0} is that there is a next page link.", pageBar.NextPrev.IsNext());
+            Console.WriteLine("{0} is that there is a previous page link.", pageBar.NextPrev.IsPrevious());
+            Console.WriteLine("There is: {0} pages with search result.", pageBar.PageList.NumberOfPages);
+            Console.WriteLine("Current page number is: {0}.", pageBar.PageList.CurrentPageNumber());
 
         }
 

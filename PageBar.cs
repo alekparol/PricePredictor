@@ -15,13 +15,6 @@ namespace WebScraper
         private NextPrev nextPrev;
         private PageList pageList;
 
-        private IWebElement pageNext;
-        private IWebElement pagePrevious;
-
-        private IWebElement firstPage;
-        private IWebElement currentPage;
-        private IWebElement lastPage;
-
         private static int numberOfPages;
 
         /* =================== */
@@ -84,40 +77,11 @@ namespace WebScraper
             nextPrev = new NextPrev(driver, pageChangeBar);
             pageList = new PageList(driver, pageChangeBar);
 
-            if (pageList.ListOfPages.Count > 0)
-            {
-                SetDerivedElements();
-            }
-
         }
 
         /* ============= */
         /* Class Methods */
         /* ============= */
-
-        public void SetDerivedElements()
-        {
-            pageNext = nextPrev.PageNext;
-            pagePrevious = nextPrev.PagePrevious;
-
-            numberOfPages = pageList.NumberOfPages;
-            firstPage = pageList.FirstPage;
-            lastPage = pageList.LastPage;
-
-            currentPage = pageList.CurrentPage;
-            //pageNumber = listOfPages.IndexOf(currentPage);
-
-        }
-
-        public bool UpdateNext ()
-        {
-            return nextPrev.IsNext();
-        }
-
-        public bool UpdatePrevious()
-        {
-            return nextPrev.IsPrevious();
-        }
 
     }
 }

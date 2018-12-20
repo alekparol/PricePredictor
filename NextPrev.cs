@@ -94,12 +94,12 @@ namespace WebScraper
 
         public bool IsNext ()
         {
-            return pageNext.GetAttribute("href") != null;
+            return pageNext.GetAttribute("href") == null;
         }
 
         public bool IsPrevious ()
         {
-            return pagePrevious.GetAttribute("href") != null;
+            return pagePrevious.GetAttribute("href") == null;
         }
 
     }

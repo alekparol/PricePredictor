@@ -58,17 +58,16 @@ namespace Tests
             IWebDriver chromeDriver = new ChromeDriver();
             chromeDriver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(2);
 
-            SearchPage searchPage = new SearchPage();
             MainPage mainPage = new MainPage(chromeDriver);
             string nextPageURL = mainPage.SearchProduct("ns eccentric");
+            SearchPage searchPage = new SearchPage(chromeDriver);
 
             Thread.Sleep(100);
 
-            Assert.That(nextPageURL, Is.EqualTo(chromeDriver.Url));
 
+            Assert.That(nextPageURL, Is.EqualTo(chromeDriver.Url));
             searchPage.CountResults(chromeDriver);
             searchPage.CountPageElements(chromeDriver);
-
             OLXProduct product = new OLXProduct(chromeDriver, 10);
             product.DisplayProductInfo();
             /*for (int i = 4; i < 7; i ++)
@@ -87,19 +86,18 @@ namespace Tests
             IWebDriver chromeDriver = new ChromeDriver();
             chromeDriver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(2);
 
-            SearchPage searchPage = new SearchPage();
             MainPage mainPage = new MainPage(chromeDriver);
             string nextPageURL = mainPage.SearchProduct("mebel");
+            SearchPage searchPage = new SearchPage(chromeDriver);
 
             Thread.Sleep(100);
 
             Assert.That(nextPageURL, Is.EqualTo(chromeDriver.Url));
-
             searchPage.CountResults(chromeDriver);
             searchPage.CountPageElements(chromeDriver);
-
             OLXProduct product = new OLXProduct(chromeDriver, 10);
             product.DisplayProductInfo();
+            searchPage.DisplayAll();
             /*for (int i = 4; i < 7; i ++)
             {
                 product = new OLXProduct(chromeDriver, i);
@@ -115,19 +113,18 @@ namespace Tests
             IWebDriver chromeDriver = new ChromeDriver();
             chromeDriver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(2);
 
-            SearchPage searchPage = new SearchPage();
             MainPage mainPage = new MainPage(chromeDriver);
             string nextPageURL = mainPage.SearchProduct("mebel", "Warszawa");
+            SearchPage searchPage = new SearchPage(chromeDriver);
 
             Thread.Sleep(100);
 
             Assert.That(nextPageURL, Is.EqualTo(chromeDriver.Url));
-
             searchPage.CountResults(chromeDriver);
             searchPage.CountPageElements(chromeDriver);
-
             OLXProduct product = new OLXProduct(chromeDriver, 10);
             product.DisplayProductInfo();
+            searchPage.DisplayAll();
             /*for (int i = 4; i < 7; i ++)
             {
                 product = new OLXProduct(chromeDriver, i);

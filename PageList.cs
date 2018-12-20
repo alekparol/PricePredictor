@@ -118,7 +118,7 @@ namespace WebScraper
 
         public int CurrentPageNumber ()
         {
-            return listOfPages.IndexOf(currentPage);
+            return listOfPages.IndexOf(currentPage) + 1;
         }
 
     }
