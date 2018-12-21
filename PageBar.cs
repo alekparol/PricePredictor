@@ -77,5 +77,45 @@ namespace WebScraper
         /* Class Methods */
         /* ============= */
 
+        public void GoToNextPage (IWebDriver driver)
+        {
+
+            if (nextPrev.IsNext() == true)
+            {
+                driver.Navigate().GoToUrl(nextPrev.PageNext.GetAttribute("href"));
+            }
+
+        }
+
+        public void GoToPreviousPage (IWebDriver driver)
+        {
+
+            if (nextPrev.IsPrevious() == true)
+            {
+                driver.Navigate().GoToUrl(nextPrev.PagePrevious.GetAttribute("href"));
+            }
+
+        }
+
+        public void GoToFirstPage (IWebDriver driver)
+        {
+
+            if (pageList.FirstPageNumber != 0)
+            {
+                driver.Navigate().GoToUrl(PageList.FirstPage.GetAttribute("href"));
+            }
+
+        }
+
+        public void GoToLastPage(IWebDriver driver)
+        {
+
+            if (pageList.LastPageNumber != 0)
+            {
+                driver.Navigate().GoToUrl(PageList.LastPage.GetAttribute("href"));
+            }
+
+        }
+
     }
 }

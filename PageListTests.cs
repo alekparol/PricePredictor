@@ -38,7 +38,6 @@ namespace WebScraperTests
             Assert.That(pageList.LastPageNumber, Is.EqualTo(20));
             Assert.That(pageList.FirstPageNumber, Is.EqualTo(1));
 
-
             Assert.That(pageList.NumberOfPages, Is.EqualTo(14));
 
             /* Teard down */
