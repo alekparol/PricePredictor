@@ -10,6 +10,7 @@ namespace WebScraper
 
     /**
      *TODO: Check if no sanity checks are missing.     
+     *NOTE: List of IWebElements is passed (not sure if it has to be that way) - to check if this list has any elements.    
     */
 
     public class NextPrev
@@ -77,7 +78,7 @@ namespace WebScraper
         public NextPrev (IWebDriver driver, List<IWebElement> pageChangeBar)
         {
 
-            if (pageChangeBar != null)
+            if (pageChangeBar.Count != 0)
             {
 
                 pageNextPrev = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("pageNextPrev")));

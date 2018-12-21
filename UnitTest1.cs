@@ -109,13 +109,13 @@ namespace Tests
             chromeDriver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(2);
 
             MainPage mainPage = new MainPage(chromeDriver);
-            string nextPageURL = mainPage.SearchProduct("telefon", "Warszawa");
+            string nextPageURL = mainPage.SearchProduct("lodowka", "Warszawa");
             SearchPage searchPage = new SearchPage(chromeDriver);
 
             Thread.Sleep(100);
 
             Assert.That(nextPageURL, Is.EqualTo(chromeDriver.Url));
-            OLXProduct product = new OLXProduct(chromeDriver, 10);
+            OLXProduct product = new OLXProduct(chromeDriver, 36);
             product.DisplayProductInfo();
             searchPage.DisplayAll();
             /*for (int i = 4; i < 7; i ++)
@@ -138,13 +138,14 @@ namespace Tests
             SearchPage searchPage = new SearchPage(chromeDriver);
 
             Thread.Sleep(100);
-            OLXProduct[] product = new OLXProduct[searchPage.ProductsList.ProductsOnPage];
+            OLXProduct product;
 
             Assert.That(nextPageURL, Is.EqualTo(chromeDriver.Url));
-            for (int i = 0; i < searchPage.ProductsList.ProductsOnPage; i++)
+            for (int i = 10; i < 20; i++)
             {
-                product[i] = new OLXProduct(chromeDriver, i);
-                product[i].DisplayProductInfo();
+                product = new OLXProduct(chromeDriver, i);
+                product.DisplayProductInfo();
+
             }
 
             searchPage.DisplayAll();

@@ -246,6 +246,8 @@ namespace WebScraper
             Console.WriteLine("There is: {0} search results.", productsList.NumberOfResults);
             Console.WriteLine("Currently on the page is displayed: {0} products.", productsList.ProductsOnPage);
 
+            Console.WriteLine("There is: {0} actual products.", productsList.ActualProducts);
+
         }
 
     }

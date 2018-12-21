@@ -116,22 +116,23 @@ namespace WebScraper
 
         }
 
-        /**
-         * TODO: Change function from Utilities and make it constructor in this class. 
-         */
-
         public OLXProduct (IWebDriver driver, int productNumber)
         {
 
-            List<IWebElement> listOfProducts = new List<IWebElement>(driver.FindElements(By.ClassName("wrap")));
+            List<IWebElement> listOfProducts = new List<IWebElement>(driver.FindElement(By.Id("offers_table")).FindElements(By.ClassName("wrap")));
 
-            productURL = listOfProducts[productNumber].FindElement(By.XPath(xpathURL)).GetAttribute("href");
-            productName = listOfProducts[productNumber].FindElement(By.XPath(xpathName)).Text;
+            if (listOfProducts[productNumber] != null)
+            {
 
-            productDate = new Date(listOfProducts[productNumber].FindElement(By.XPath(xpathDate)).Text);
-            productLocalization = new Location(listOfProducts[productNumber].FindElement(By.XPath(xpathLocalization)).Text);
-            productPrice = new Price(listOfProducts[productNumber].FindElement(By.XPath(xpathPrice)).Text);
-            productCategory = new MainCategory(listOfProducts[productNumber].FindElement(By.XPath(xpathCategory)).Text);
+                productURL = listOfProducts[productNumber].FindElement(By.XPath(xpathURL)).GetAttribute("href");
+                productName = listOfProducts[productNumber].FindElement(By.XPath(xpathName)).Text;
+
+                productDate = new Date(listOfProducts[productNumber].FindElement(By.XPath(xpathDate)).Text);
+                productLocalization = new Location(listOfProducts[productNumber].FindElement(By.XPath(xpathLocalization)).Text);
+                productPrice = new Price(listOfProducts[productNumber].FindElement(By.XPath(xpathPrice)).Text);
+                productCategory = new MainCategory(listOfProducts[productNumber].FindElement(By.XPath(xpathCategory)).Text);
+
+            }
 
 
         }

@@ -13,6 +13,8 @@ namespace WebScraper
         private int numberOfResults;
         private int productsOnPage;
 
+        private int actualProducts;
+
         private List<IWebElement> listOfProducts;
         private Regex foundResults = new Regex("\\d+\\s?\\d+"); // Changed because some number are in format X XXX.
 
@@ -48,6 +50,20 @@ namespace WebScraper
 
         }
 
+        public int ActualProducts
+        {
+
+            get
+            {
+                return actualProducts;
+            }
+            set
+            {
+                actualProducts = value;
+            }
+
+        }
+
         /* ============ */
         /* Constructors */
         /* ============ */
@@ -76,6 +92,9 @@ namespace WebScraper
 
             listOfProducts = new List<IWebElement>(driver.FindElements(By.ClassName("wrap")));
             productsOnPage = listOfProducts.Count;
+
+            List <IWebElement> listOfActual = new List <IWebElement> (driver.FindElement(By.Id("offers_table")).FindElements(By.Id("wrap")));
+            actualProducts = listOfActual.Count;
 
         }
 
