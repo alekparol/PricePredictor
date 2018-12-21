@@ -83,10 +83,10 @@ namespace WebScraper
 
                 pageNextPrev = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("pageNextPrev")));
 
-                if (pageNextPrev.Count == 2) // Check if pageChangeBar[0] != null would work.
+                if (pageNextPrev.Count >= 2) // Check if pageChangeBar[0] != null would work.
                 {
-                    pageNext = pageNextPrev[0];
-                    pagePrevious = pageNextPrev[1];
+                    pageNext = pageNextPrev[1];
+                    pagePrevious = pageNextPrev[0];
 
                 }
 
@@ -100,12 +100,14 @@ namespace WebScraper
 
         public bool IsNext ()
         {
-            return pageNext.GetAttribute("href") == null;
+            bool isNext = pageNext.GetAttribute("href") != null;
+            return isNext;
         }
 
         public bool IsPrevious ()
-        {
-            return pagePrevious.GetAttribute("href") == null;
+        {   
+            bool isPrevious = pagePrevious.GetAttribute("href") != null;
+            return isPrevious;
         }
 
     }
