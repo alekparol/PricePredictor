@@ -130,7 +130,11 @@ namespace WebScraper
                 firstPageNumber = Int32.Parse(firstPage.Text);
                 lastPageNumber = Int32.Parse(lastPage.Text);
 
-                currentPage = listOfPages.Find((IWebElement obj) => obj.GetAttribute("data-cy") == "page-link-current");
+                /**
+                 * Current page is not initialized properly.               
+                */
+
+                currentPage = listOfPages.Find(obj => obj.GetAttribute("data-cy") == "page-link-current");
 
             }
 
@@ -140,9 +144,13 @@ namespace WebScraper
         /* Class Methods */
         /* ============= */
 
+        /**
+         * TODO: Modify this method. It returns now -1.
+            */
+
         public int CurrentPageNumber ()
         {
-            return listOfPages.IndexOf(currentPage) + 1;
+            return listOfPages.FindIndex((IWebElement obj) => obj.GetAttribute("data-cy") == "page-link-current");
         }
 
     }

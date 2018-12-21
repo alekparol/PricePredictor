@@ -145,5 +145,57 @@ namespace WebScraperTests
 
         }
 
+        [Test()] 
+        public void ChangePage()
+        {
+
+            /* Test initialization */
+
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://www.olx.pl/oferty/q-marshall-major/");
+
+            List<IWebElement> pageChangeBar = new List<IWebElement>(driver.FindElements(By.ClassName("pager")));
+            NextPrev nextPrev = new NextPrev(driver, pageChangeBar);
+
+            /* Testing */
+
+            Assert.That(nextPrev.IsNext(), Is.True);
+            driver.Navigate().GoToUrl(nextPrev.PageNext.GetAttribute("href"));
+
+            Assert.That(driver.Url, Is.EqualTo("https://www.olx.pl/oferty/q-marshall-major/?page=2"));
+
+            pageChangeBar = new List<IWebElement>(driver.FindElements(By.ClassName("pager")));
+            nextPrev = new NextPrev(driver, pageChangeBar);
+
+            Assert.That(nextPrev.IsNext, Is.True);
+            Assert.That(nextPrev.IsPrevious, Is.True);
+
+            driver.Navigate().GoToUrl(nextPrev.PageNext.GetAttribute("href"));
+
+            Assert.That(driver.Url, Is.EqualTo("https://www.olx.pl/oferty/q-marshall-major/?page=3"));
+
+            pageChangeBar = new List<IWebElement>(driver.FindElements(By.ClassName("pager")));
+            nextPrev = new NextPrev(driver, pageChangeBar);
+
+            Assert.That(nextPrev.IsNext, Is.True);
+            Assert.That(nextPrev.IsPrevious, Is.True);
+
+            driver.Navigate().GoToUrl(nextPrev.PageNext.GetAttribute("href"));
+
+            Assert.That(driver.Url, Is.EqualTo("https://www.olx.pl/oferty/q-marshall-major/?page=4"));
+
+            pageChangeBar = new List<IWebElement>(driver.FindElements(By.ClassName("pager")));
+            nextPrev = new NextPrev(driver, pageChangeBar);
+
+            Assert.That(nextPrev.IsNext, Is.False);
+            Assert.That(nextPrev.IsPrevious, Is.True);
+
+            /* Teard down */
+
+            driver.Quit();
+
+        }
+
+
     }
 }

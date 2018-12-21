@@ -1,16 +1,31 @@
 ﻿<Properties StartupConfiguration="{08D54AEB-FC29-4CFE-8BAE-11584E4ED519}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="NextPrevTests.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SearchBarTests.cs">
     <Files>
       <File FileName="Page.cs" Line="249" Column="94" />
       <File FileName="ProductsList.cs" Line="96" Column="13" />
       <File FileName="SearchBar.cs" Line="159" Column="14" />
+      <File FileName="SearchBarTests.cs" Line="1" Column="1" />
       <File FileName="PageBar.cs" Line="39" Column="14" />
-      <File FileName="PageList.cs" Line="65" Column="14" />
-      <File FileName="NextPrev.cs" Line="102" Column="10" />
-      <File FileName="NextPrevTests.cs" Line="128" Column="1" />
+      <File FileName="PageList.cs" Line="1" Column="1" />
+      <File FileName="PageListTests.cs" Line="43" Column="29" />
+      <File FileName="NextPrev.cs" Line="121" Column="14" />
+      <File FileName="NextPrevTests.cs" Line="46" Column="1" />
       <File FileName="OLXProduct.cs" Line="127" Column="59" />
       <File FileName="UnitTest1.cs" Line="140" Column="31" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="WebScraper" expanded="True">
+            <Node name="WebScraper" expanded="True">
+              <Node name="WebScraperTests" expanded="True">
+                <Node name="PageListTests" expanded="True" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.WebScraper PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

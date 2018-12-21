@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		DateTests.cs = DateTests.cs
 		LocationTests.cs = LocationTests.cs
 		NextPrevTests.cs = NextPrevTests.cs
+		PageListTests.cs = PageListTests.cs
+		SearchBarTests.cs = SearchBarTests.cs
 	EndProjectSection
 EndProject
 Global
