@@ -59,10 +59,15 @@ namespace WebScraper
 
         }
 
+        /**
+         * NOTE: Here there should be no sanity check, because there are ones in both classes.       
+        */
+
         public PageBar (IWebDriver driver)
         {
 
             pageChangeBar = new List<IWebElement>(driver.FindElements(By.ClassName("pager")));
+
             nextPrev = new NextPrev(driver, pageChangeBar);
             pageList = new PageList(driver, pageChangeBar);
 

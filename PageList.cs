@@ -118,12 +118,13 @@ namespace WebScraper
 
         public PageList (IWebDriver driver, List <IWebElement> pageChangeBar)
         {
-       
-            listOfPages = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("item")));
-            numberOfPages = listOfPages.Count;
 
-            if (numberOfPages > 0)
+            if (pageChangeBar.Count > 0)
             {
+
+                listOfPages = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("item")));
+                numberOfPages = listOfPages.Count;
+
                 firstPage = listOfPages[0];
                 lastPage = listOfPages[numberOfPages - 1];
 
@@ -131,7 +132,7 @@ namespace WebScraper
                 lastPageNumber = Int32.Parse(lastPage.Text);
 
                 /**
-                 * Current page is not initialized properly.               
+                 * Current page is not initialized properly.              
                 */
 
                 currentPage = listOfPages.Find(obj => obj.GetAttribute("data-cy") == "page-link-current");

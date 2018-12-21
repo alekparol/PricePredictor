@@ -32,6 +32,9 @@ namespace WebScraper
      * 2. Class MainPage
     */
         
+        /**
+         * TODO: Add void methods GoToNextPage() and GoToPreviousPage() which will be implemented pageBar.PageList.PageNext.Click() or simillar - SearchPageSearch.   
+        */
 
     public class Page
     {
