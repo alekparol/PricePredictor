@@ -100,14 +100,27 @@ namespace WebScraper
 
         public bool IsNext ()
         {
-            bool isNext = pageNext.GetAttribute("href") != null;
-            return isNext;
+            if (pageNext != null)
+            {
+                return pageNext.GetAttribute("href") != null;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool IsPrevious ()
         {   
-            bool isPrevious = pagePrevious.GetAttribute("href") != null;
-            return isPrevious;
+
+            if (pageNext != null)
+            {
+                return pagePrevious.GetAttribute("href") != null;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }

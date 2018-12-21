@@ -69,11 +69,14 @@ namespace WebScraperTests
             Assert.That(nextPrev.PageNext, Is.Not.Null);
             Assert.That(nextPrev.PagePrevious, Is.Not.Null);
 
-            Assert.That(nextPrev.PageNext.GetAttribute("href"), Is.EqualTo("https://www.olx.pl/warszawa/q-lodowka/"));
-            Assert.That(nextPrev.PagePrevious.GetAttribute("href"), Is.EqualTo("https://www.olx.pl/warszawa/q-lodowka/?page=3"));
+            Assert.That(nextPrev.PageNext.GetAttribute("data-cy"), Is.EqualTo("page-link-next"));
+            Assert.That(nextPrev.PagePrevious.GetAttribute("data-cy"), Is.EqualTo("page-link-prev"));
 
-            //Assert.That(nextPrev.IsNext(), Is.True);
-            //Assert.That(nextPrev.IsPrevious(), Is.True);
+            Assert.That(nextPrev.PageNext.GetAttribute("href"), Is.Not.Null);
+            Assert.That(nextPrev.PagePrevious.GetAttribute("href"), Is.Not.Null);
+
+            Assert.That(nextPrev.IsNext(), Is.True);
+            Assert.That(nextPrev.IsPrevious(), Is.True);
 
             /* Teard down */
 
@@ -102,11 +105,14 @@ namespace WebScraperTests
             Assert.That(nextPrev.PageNext, Is.Not.Null);
             Assert.That(nextPrev.PagePrevious, Is.Not.Null);
 
-            Assert.That(nextPrev.PagePrevious.GetAttribute("href"), Is.Null);
-            Assert.That(nextPrev.PageNext.GetAttribute("href"), Is.Not.Empty);
+            Assert.That(nextPrev.PageNext.GetAttribute("data-cy"), Is.EqualTo("page-link-next"));
+            Assert.That(nextPrev.PagePrevious.GetAttribute("data-cy"), Is.EqualTo("page-link-prev"));
 
-            //Assert.That(nextPrev.IsNext(), Is.False);
-            //Assert.That(nextPrev.IsPrevious(), Is.True);
+            Assert.That(nextPrev.PageNext.GetAttribute("href"), Is.Null);
+            Assert.That(nextPrev.PagePrevious.GetAttribute("href"), Is.Not.Null);
+
+            Assert.That(nextPrev.IsNext(), Is.False);
+            Assert.That(nextPrev.IsPrevious(), Is.True);
 
             /* Teard down */
 
@@ -129,12 +135,9 @@ namespace WebScraperTests
             /* Testing */
 
             Assert.That(nextPrev, Is.Not.Null);
-            Assert.That(nextPrev.PageNextPrev.Count, Is.EqualTo(0));
 
-            Assert.That(nextPrev.PageNext, Is.Null);
-            Assert.That(nextPrev.PagePrevious, Is.Null);
-
-            //Assert.That(nextPrev.IsNext, Is.Null);
+            Assert.That(nextPrev.IsNext(), Is.False);
+            Assert.That(nextPrev.IsPrevious(), Is.False);
 
             /* Teard down */
 

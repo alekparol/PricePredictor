@@ -6,8 +6,8 @@
       <File FileName="SearchBar.cs" Line="159" Column="14" />
       <File FileName="PageBar.cs" Line="39" Column="14" />
       <File FileName="PageList.cs" Line="65" Column="14" />
-      <File FileName="NextPrev.cs" Line="108" Column="13" />
-      <File FileName="NextPrevTests.cs" Line="37" Column="98" />
+      <File FileName="NextPrev.cs" Line="102" Column="10" />
+      <File FileName="NextPrevTests.cs" Line="128" Column="1" />
       <File FileName="OLXProduct.cs" Line="127" Column="59" />
       <File FileName="UnitTest1.cs" Line="140" Column="31" />
     </Files>
