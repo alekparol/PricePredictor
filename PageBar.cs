@@ -60,7 +60,7 @@ namespace WebScraper
         }
 
         /**
-         * NOTE: Here there should be no sanity check, because there are ones in both classes.       
+         * NOTE: Here there should be no sanity check, because there are ones in both classes.
         */
 
         public PageBar (IWebDriver driver)

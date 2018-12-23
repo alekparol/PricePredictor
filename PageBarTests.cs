@@ -18,7 +18,7 @@ namespace WebScraperTests
 {
     /**
      * TODO: Make tests in which both classes would be used.
-     */ 
+     */
 
     [TestFixture()]
     public class PageBarTests
@@ -72,7 +72,7 @@ namespace WebScraperTests
 
             Assert.That(pageBar.PageList.NumberOfPages, Is.EqualTo(12));
             Assert.That(pageBar.PageList.FirstPageNumber, Is.EqualTo(1));
-           
+
             Assert.That(pageBar.NextPrev.IsNext(), Is.False);
             Assert.That(pageBar.NextPrev.IsPrevious(), Is.True);
 
@@ -126,7 +126,7 @@ namespace WebScraperTests
             PageBar pageBar = new PageBar(driver);
 
             /* Testing */
-    
+
             for (int i = 2; i <= pageBar.PageList.LastPageNumber; i++)
             {
 
@@ -141,7 +141,7 @@ namespace WebScraperTests
                     Assert.That(pageBar.NextPrev.IsNext(), Is.True);
                     Assert.That(pageBar.NextPrev.IsPrevious(), Is.True);
 
-                } 
+                }
                 else
                 {
 
