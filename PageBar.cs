@@ -77,43 +77,70 @@ namespace WebScraper
         /* Class Methods */
         /* ============= */
 
-        public void GoToNextPage (IWebDriver driver)
+        public PageBar GoToNextPage (IWebDriver driver)
         {
+            PageBar pageBar = new PageBar(driver);
 
             if (nextPrev.IsNext() == true)
             {
                 driver.Navigate().GoToUrl(nextPrev.PageNext.GetAttribute("href"));
+                pageBar = new PageBar(driver);
+
+                return pageBar;
             }
+
+            return pageBar;
 
         }
 
-        public void GoToPreviousPage (IWebDriver driver)
+        public PageBar GoToPreviousPage (IWebDriver driver)
         {
+
+            PageBar pageBar = new PageBar(driver);
 
             if (nextPrev.IsPrevious() == true)
             {
                 driver.Navigate().GoToUrl(nextPrev.PagePrevious.GetAttribute("href"));
+                pageBar = new PageBar(driver);
+
+                return pageBar;
             }
+
+            return pageBar;
 
         }
 
-        public void GoToFirstPage (IWebDriver driver)
+        public PageBar GoToFirstPage(IWebDriver driver)
         {
+
+            PageBar pageBar = new PageBar(driver);
 
             if (pageList.FirstPageNumber != 0)
             {
-                driver.Navigate().GoToUrl(PageList.FirstPage.GetAttribute("href"));
+                driver.Navigate().GoToUrl(pageList.FirstPage.FindElement(By.XPath("./a")).GetAttribute("href"));
+                pageBar = new PageBar(driver);
+
+                return pageBar;
             }
+
+            return pageBar;
 
         }
 
-        public void GoToLastPage(IWebDriver driver)
+        public PageBar GoToLastPage(IWebDriver driver)
         {
+
+            PageBar pageBar = new PageBar(driver);
 
             if (pageList.LastPageNumber != 0)
             {
-                driver.Navigate().GoToUrl(PageList.LastPage.GetAttribute("href"));
+                driver.Navigate().GoToUrl(pageList.LastPage.FindElement(By.XPath("./a")).GetAttribute("href"));
+                pageBar = new PageBar(driver);
+
+                return pageBar;
             }
+
+            return pageBar;
 
         }
 
