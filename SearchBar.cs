@@ -127,6 +127,14 @@ namespace WebScraper
 
         }
 
+        public void ClearLocation()
+        {
+
+            locationInputField.Clear();
+            Thread.Sleep(1000);
+
+        }
+
         public void SubmitSearch ()
         {
             submitButton.Click();

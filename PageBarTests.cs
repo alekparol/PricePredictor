@@ -239,14 +239,14 @@ namespace WebScraperTests
 
             pageBar = pageBar.GoToLastPage(driver);
 
-            for (int i = pageBar.PageList.LastPageNumber - 1; i >= 0; i--)
+            for (int i = pageBar.PageList.LastPageNumber - 1; i > 0; i--)
             {
 
                 pageBar = pageBar.GoToPreviousPage(driver);
 
                 Assert.That(pageBar.PageList.FirstPageNumber, Is.EqualTo(1));
 
-                if (i != 0)
+                if (i != 1)
                 {
                     Assert.That(driver.Url, Is.EqualTo("https://www.olx.pl/warszawa/q-lodowka/?page=" + i.ToString()));
 
