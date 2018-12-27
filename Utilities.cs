@@ -33,11 +33,7 @@ namespace OLXScraper
          * TIME //td/div/table/tbody/tr[2]/td[1]/div/p/small[2]/span    
          * LOCALIZATION //td/div/table/tbody/tr[2]/td[1]/div/p/small[1]/span
          * NAME //td/div/table/tbody/tr[1]/td[2]/div/h3/a/strong       
-         * CATEGORY //td/div/table/tbody/tr[1]/td[2]/div/p/small 
-         * 
-         * 
-         * Console.WriteLine(listOfProducts[productNumber].FindElement(By.ClassName("price")).Text);
-         * string xpath = "//*[@id=\"offers_table\"]/tbody/tr[" + productNumber.ToString() + "]";        
+         * CATEGORY //td/div/table/tbody/tr[1]/td[2]/div/p/small    
         */
 
 

@@ -33,7 +33,9 @@ namespace WebScraper
     */
         
         /**
-         * TODO: Add void methods GoToNextPage() and GoToPreviousPage() which will be implemented pageBar.PageList.PageNext.Click() or simillar - SearchPageSearch.   
+         * TODO: Add void methods GoToNextPage() and GoToPreviousPage() which will be implemented pageBar.PageList.PageNext.Click() or simillar - SearchPageSearch. 
+         * TODO: Add a function which will be changing polish letters to their english substitute. Like change ł into l in biała-podlaska. This function should be used 
+         * in both change funtions.         
         */
 
     public class Page

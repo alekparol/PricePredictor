@@ -76,5 +76,54 @@ namespace WebScraperTests
 
         }
 
+        [Test()]
+        [TestCase("rower")]
+        [TestCase("kuchenka elektryczna")]
+        public void MainPagSearchProduct(string productName)
+        {
+
+            /* Test initialization */
+
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://www.olx.pl");
+
+            MainPage mainPage = new MainPage(driver);
+
+            /* Testing */
+
+            string searchResult = mainPage.SearchProduct(productName);
+
+            Assert.That(driver.Url, Is.Not.EqualTo("https://www.olx.pl"));
+
+            /* Teard down */
+
+            driver.Quit();
+
+        }
+
+        [Test()]
+        [TestCase("rower", "Warszawa")]
+        [TestCase("kuchenka elektryczna", "Biała Podlaska")]
+        public void MainPagSearchProductLocation(string productName, string productLocation)
+        {
+
+            /* Test initialization */
+
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://www.olx.pl");
+
+            MainPage mainPage = new MainPage(driver);
+
+            /* Testing */
+
+            string searchResult = mainPage.SearchProduct(productName, productLocation);
+            Assert.That(driver.Url, Is.Not.EqualTo("https://www.olx.pl"));
+
+            /* Teard down */
+
+            driver.Quit();
+
+        }
+
     }
 }
