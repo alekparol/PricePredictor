@@ -4,6 +4,7 @@ using System.Text;
 using OpenQA.Selenium;
 using System.Text.RegularExpressions;
 using System.Threading;
+using WebScraper;
 
 namespace WebScraper
 {
@@ -11,32 +12,44 @@ namespace WebScraper
     /**
      * This file contains classes which are storing relevant IWebElements from pages used in out program.
      * 
+     * Description: This class contains classes related to pages in each step of the program. Those classes have properties which for which models are specific elements
+     * of those pages, which will be used during program run. This class is parted onto four:
+     * 1. Class Page which is most general class of them all, which only contains baseURL string to some homepage (in this case it is homepage of OLX) and class method
+     *    which navigates webdriver to this URL address. Possibly it should be changed to be Interface or abstract class. 
+     * 2. Class MainPage    
+     *     
+    */
+
+    /**
+     * TEST PLANS
+     * Most vunerable parts of the code (from the side of the page) is ProductsList class. Because definition of the productsList could too wide, as it can contain sponsored 
+     * content or advertisments or empty "wraps". So it has to be checked. 
+    */
+
+    /**
+     * CODE STRUCTURE 
+     * OLX Product class should use ProductsList attributes, as it has list of IWebElements which could be reused. So basically OLX Product creates another products list.
     */
 
     /**
      * TODO: Make SearchPage and ProductPage to inherit from MainPage. There are elements which are the same on those sites.   
-     * TODO: Make a class representing search bar and move all properties to it. 
-     * TODO: Research if "Page" class should be efficiently changed to an interface.     
+     * TODO: Research if "Page" class should be efficiently changed to an interface.       
+     * TODO: Delete default constructors.     
+     * TODO: Modify CurrentPageNumber (driver) in PageList class as it is not working. Problem is in the wrong initialization of the currentPage variable.     
+     *     
      * NOTE: Main Page and Search Page have the same elements: searchField, locationField and submitButton, although on the searchField there are few more which could be 
      * helpful. 
      * NOTE: Product Page is somehow different, therefore there should be another class from which it could inherit.     
      * NOTE: Address of the page after search for a product changes with oferty/q-productName if there is no specified location of the search, and /productLocation/q-productName 
      * if it is specified.     
+     * NOTE: For scrolling down and up
+     *     
+     * WebDriver driver = new FirefoxDriver();
+     * JavascriptExecutor jse = (JavascriptExecutor)driver;
+     * jse.executeScript("window.scrollBy(0,250)", "");
+     * jse.executeScript("scroll(0, -250);");    
+     * 
     */
-
-    /**
-     * Description: This class contains classes related to pages in each step of the program. Those classes have properties which for which models are specific elements
-     * of those pages, which will be used during program run. This class is parted onto four:
-     * 1. Class Page which is most general class of them all, which only contains baseURL string to some homepage (in this case it is homepage of OLX) and class method
-     *    which navigates webdriver to this URL address. Possibly it should be changed to be Interface or abstract class. 
-     * 2. Class MainPage
-    */
-        
-        /**
-         * TODO: Add void methods GoToNextPage() and GoToPreviousPage() which will be implemented pageBar.PageList.PageNext.Click() or simillar - SearchPageSearch. 
-         * TODO: Add a function which will be changing polish letters to their english substitute. Like change ł into l in biała-podlaska. This function should be used 
-         * in both change funtions.         
-        */
 
     public class Page
     {
@@ -75,7 +88,7 @@ namespace WebScraper
         /* Class Methods */
         /* ============= */
 
-        public void GoToHomePage (IWebDriver driver)
+        public void GoToHomepage (IWebDriver driver)
         {
 
             driver.Navigate().GoToUrl(baseURL);
@@ -86,6 +99,8 @@ namespace WebScraper
 
     public class MainPage:Page
     {
+
+        public WebScraper.Utilities ut = new Utilities();
 
         private SearchBarMain searchBar;
         private string nextPageURL;
@@ -120,7 +135,7 @@ namespace WebScraper
         public MainPage (IWebDriver driver):base(driver)
         {
 
-            GoToHomePage(driver);
+            GoToHomepage(driver);
             searchBar = new SearchBarMain(driver);
 
         }
@@ -135,7 +150,7 @@ namespace WebScraper
             searchBar.TypeProductName(productName);
             searchBar.SubmitSearch();
 
-            nextPageURL = baseURL + "/oferty/q-" + ChangeName(productName) + "/"; 
+            nextPageURL = baseURL + "/oferty/q-" + ut.ChangeName(productName) + "/"; 
             return nextPageURL;
 
         }
@@ -147,28 +162,8 @@ namespace WebScraper
             searchBar.TypeLocation(productLocation);
             searchBar.SubmitSearch();
 
-            nextPageURL = baseURL + "/" + ChangeLocation(productLocation) + "/q-" + ChangeName(productName) + "/";  
+            nextPageURL = baseURL + "/" + ut.ChangeLocation(productLocation) + "/q-" + ut.ChangeName(productName) + "/";  
             return nextPageURL;
-
-        }
-
-        public string ChangeName (string productName)
-        {
-
-            productName = productName.Replace(" ", "-").ToLower();
-            return productName;
-
-        }
-
-        /**
-         * TODO: Check how url changes for different search locations. 
-         */
-
-        public string ChangeLocation (string productLocation)
-        {
-
-            productLocation = productLocation.Replace(" ", "-").ToLower();
-            return productLocation;
 
         }
 
@@ -178,9 +173,9 @@ namespace WebScraper
     {
 
         private SearchBarSearch searchBar;
-        private PageBar pageBar;
         private ProductsList productsList;
 
+        private PageBar pageBar;
 
         /* =================== */
         /* Getters and Setters */
@@ -238,6 +233,33 @@ namespace WebScraper
         /* Class Methods */
         /* ============= */
 
+        /**
+         * TODO: Evaluate if this part of code (that is those class methods) are rather more useful in PageBar class or in Page class.       
+        */
+
+        public void GoToFirstPage (IWebDriver driver)
+        {
+            pageBar.GoToFirstPage(driver);
+        }
+
+        public void GoToLastPage(IWebDriver driver)
+        {
+            pageBar.GoToLastPage(driver);
+        }
+
+        public void GoToNextPage(IWebDriver driver)
+        {
+            pageBar.GoToNextPage(driver);
+        }
+
+        public void GoToPreviousPage(IWebDriver driver)
+        {
+            pageBar.GoToPreviousPage(driver);
+        }
+
+        /**
+         * TODO: Check if adding if adding sanity check here is necessary - that is checking if pageBar and productsList are not null.        
+        */
 
         public void DisplayAll()
         {

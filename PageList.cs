@@ -145,10 +145,6 @@ namespace WebScraper
         /* Class Methods */
         /* ============= */
 
-        /**
-         * TODO: Modify this method. It returns now -1.
-            */
-
         public int CurrentPageNumber ()
         {
             return listOfPages.FindIndex((IWebElement obj) => obj.GetAttribute("data-cy") == "page-link-current");

@@ -38,7 +38,7 @@ namespace WebScraperTests
             Match match = productNameMatch.Match(searchProductName);
             string testName = match.ToString().Substring(2, match.ToString().Length - 3);
 
-            Assert.That(mainPage.ChangeName(productName), Is.EqualTo(testName));
+            Assert.That(mainPage.ut.ChangeName(productName), Is.EqualTo(testName));
 
             /* Teard down */
 
@@ -68,7 +68,7 @@ namespace WebScraperTests
             Match match = productNameMatch.Match(searchProductName);
             string testLocation = match.ToString().Substring(1, match.ToString().Length - 4);
 
-            Assert.That(mainPage.ChangeLocation(productLocation), Is.EqualTo(testLocation));
+            Assert.That(mainPage.ut.ChangeLocation(productLocation), Is.EqualTo(testLocation));
 
             /* Teard down */
 

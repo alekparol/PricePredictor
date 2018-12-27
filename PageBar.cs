@@ -77,39 +77,6 @@ namespace WebScraper
         /* Class Methods */
         /* ============= */
 
-        public PageBar GoToNextPage (IWebDriver driver)
-        {
-            PageBar pageBar = new PageBar(driver);
-
-            if (nextPrev.IsNext() == true)
-            {
-                driver.Navigate().GoToUrl(nextPrev.PageNext.GetAttribute("href"));
-                pageBar = new PageBar(driver);
-
-                return pageBar;
-            }
-
-            return pageBar;
-
-        }
-
-        public PageBar GoToPreviousPage (IWebDriver driver)
-        {
-
-            PageBar pageBar = new PageBar(driver);
-
-            if (nextPrev.IsPrevious() == true)
-            {
-                driver.Navigate().GoToUrl(nextPrev.PagePrevious.GetAttribute("href"));
-                pageBar = new PageBar(driver);
-
-                return pageBar;
-            }
-
-            return pageBar;
-
-        }
-
         public PageBar GoToFirstPage(IWebDriver driver)
         {
 
@@ -135,6 +102,39 @@ namespace WebScraper
             if (pageList.LastPageNumber != 0)
             {
                 driver.Navigate().GoToUrl(pageList.LastPage.FindElement(By.XPath("./a")).GetAttribute("href"));
+                pageBar = new PageBar(driver);
+
+                return pageBar;
+            }
+
+            return pageBar;
+
+        }
+
+        public PageBar GoToNextPage (IWebDriver driver)
+        {
+            PageBar pageBar = new PageBar(driver);
+
+            if (nextPrev.IsNext() == true)
+            {
+                driver.Navigate().GoToUrl(nextPrev.PageNext.GetAttribute("href"));
+                pageBar = new PageBar(driver);
+
+                return pageBar;
+            }
+
+            return pageBar;
+
+        }
+
+        public PageBar GoToPreviousPage (IWebDriver driver)
+        {
+
+            PageBar pageBar = new PageBar(driver);
+
+            if (nextPrev.IsPrevious() == true)
+            {
+                driver.Navigate().GoToUrl(nextPrev.PagePrevious.GetAttribute("href"));
                 pageBar = new PageBar(driver);
 
                 return pageBar;

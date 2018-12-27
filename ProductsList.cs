@@ -5,6 +5,10 @@ using OpenQA.Selenium;
 using System.Text.RegularExpressions;
 using System.Threading;
 
+/**
+ * TODO: Add some class methods which could be reused in Page class.
+*/
+
 namespace WebScraper
 {
     public class ProductsList

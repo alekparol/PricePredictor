@@ -6,7 +6,19 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using WebScraper;
 
-namespace OLXScraper
+/**
+* TODO: Add a function which will be changing polish letters to their english substitute. Like change ł into l in biała-podlaska. This function should be use
+* in both change funtions.   
+* ^ This is the code: 
+* string accentedStr;
+* byte[] tempBytes;
+* tempBytes = System.Text.Encoding.GetEncoding("ISO-8859-8").GetBytes(accentedStr);
+* string asciiStr = System.Text.Encoding.UTF8.GetString(tempBytes);  
+* 
+*/
+
+
+namespace WebScraper
 {
     public class Utilities
     {
@@ -17,6 +29,43 @@ namespace OLXScraper
             return stringToBeChanged;
 
         }
+
+        public string ChangeName(string productName)
+        {
+
+            productName = productName.Replace(" ", "-").ToLower();
+            return productName;
+
+        }
+
+        /**
+         * TODO: Check how url changes for different search locations. 
+         */
+
+        public string ChangeLocation(string productLocation)
+        {
+
+            productLocation = productLocation.Replace(" ", "-").ToLower();
+            return productLocation;
+
+        }
+
+        public string ChangePolishSings (string defaultString)
+        {
+
+            byte[] tempBytes = System.Text.Encoding.GetEncoding("ISO-8859-8").GetBytes(defaultString);
+            string asciiStr = System.Text.Encoding.UTF8.GetString(tempBytes);
+            return asciiStr;
+
+        }
+
+        /**
+         * nextPageURL = baseURL + "/oferty/q-" + ut.ChangeName(productName) + "/"; for SearchProduct(string productName).
+         * nextPageURL = baseURL + "/" + ut.ChangeLocation(productLocation) + "/q-" + ut.ChangeName(productName) + "/";  for SearchProduct(string productName, string productLocation).
+         * Int32.Parse(matchNumber.ToString().Replace(" ","")) in ProductsList.        
+        */
+
+
         /**
          * 
          * About class name "wrap" - there are two kinds of elements on the OLX page: 
