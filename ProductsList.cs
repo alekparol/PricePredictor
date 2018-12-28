@@ -9,6 +9,14 @@ using System.Threading;
  * TODO: Add some class methods which could be reused in Page class.
 */
 
+/**
+ * TODO: Change if statements in the body of the constructor. 
+ * TODO: Modify XPaths to be more elegant.  
+ * TODO: Take into accont that results should be shown only on the first page of the search (or shouldn't? it could be used in the case when number of products changes through 
+ * test time. 
+    */
+
+
 namespace WebScraper
 {
     public class ProductsList
@@ -80,17 +88,25 @@ namespace WebScraper
         public ProductsList(IWebDriver driver)
         {
 
-            string messageResults = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td/div[1]/p")).Text;
+            string messageResultsOne = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td/div[1]/p")).Text;
+            string messageResultsTwo = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td/div[2]/h2")).Text;
 
-            if (messageResults == string.Empty)
+            if (messageResultsOne == string.Empty && messageResultsTwo == string.Empty)
             {
                 numberOfResults = 0;
             }
             else
             {
-            
-                Match matchNumber = foundResults.Match(messageResults);
-                numberOfResults = Int32.Parse(matchNumber.ToString().Replace(" ",""));
+                if (messageResultsOne == string.Empty)
+                {
+                    Match matchNumber = foundResults.Match(messageResultsTwo);
+                    numberOfResults = Int32.Parse(matchNumber.ToString().Replace(" ", ""));
+                }
+                if (messageResultsTwo == string.Empty)
+                {
+                    Match matchNumber = foundResults.Match(messageResultsOne);
+                    numberOfResults = Int32.Parse(matchNumber.ToString().Replace(" ", ""));
+                }
 
             }
 

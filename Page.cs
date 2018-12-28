@@ -28,7 +28,9 @@ namespace WebScraper
 
     /**
      * CODE STRUCTURE 
+     * Maybe Page class should have all class methods from the classes which objects its using. For example IsNext() should be on the searchPage, not in searchPage.PageBar.NextPrev.    
      * OLX Product class should use ProductsList attributes, as it has list of IWebElements which could be reused. So basically OLX Product creates another products list.
+     *     
     */
 
     /**
