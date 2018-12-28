@@ -77,6 +77,20 @@ namespace WebScraper
         /* Class Methods */
         /* ============= */
 
+        public bool IsChangeBar(IWebDriver driver)
+        {
+
+            if (pageChangeBar.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
         public PageBar GoToFirstPage(IWebDriver driver)
         {
 

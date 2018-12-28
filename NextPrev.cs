@@ -96,7 +96,7 @@ namespace WebScraper
 
         /* ============= */
         /* Class Methods */
-        /* ============= */
+        /* ============= */ 
 
         public bool IsNext ()
         {

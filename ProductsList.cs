@@ -13,7 +13,7 @@ using System.Threading;
  * TODO: Change if statements in the body of the constructor. 
  * TODO: Modify XPaths to be more elegant.  
  * TODO: Take into accont that results should be shown only on the first page of the search (or shouldn't? it could be used in the case when number of products changes through 
- * test time. 
+ * test time (yep, it should be reused)). 
     */
 
 
@@ -88,8 +88,8 @@ namespace WebScraper
         public ProductsList(IWebDriver driver)
         {
 
-            string messageResultsOne = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td/div[1]/p")).Text;
-            string messageResultsTwo = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td/div[2]/h2")).Text;
+            string messageResultsOne = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td/div[1]")).Text;
+            string messageResultsTwo = driver.FindElement(By.XPath("//*[@id=\"offers_table\"]/tbody/tr[1]/td/div[2]")).Text;
 
             if (messageResultsOne == string.Empty && messageResultsTwo == string.Empty)
             {
@@ -114,6 +114,7 @@ namespace WebScraper
             productsOnPage = listOfProducts.Count;
 
             List <IWebElement> listOfActual = new List <IWebElement> (driver.FindElement(By.Id("offers_table")).FindElements(By.Id("wrap")));
+            listOfActual = listOfActual.FindAll((IWebElement obj) => obj.GetAttribute("class") == "offer");
             actualProducts = listOfActual.Count;
 
         }

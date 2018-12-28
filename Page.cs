@@ -267,15 +267,15 @@ namespace WebScraper
         {
 
             Console.WriteLine("{0} is that there is a next page link.", pageBar.NextPrev.IsNext());
-            Console.WriteLine("{0} is that there is a previous page link.", pageBar.NextPrev.IsPrevious());
+            Console.WriteLine("{0} is that there is a previous page link.\n", pageBar.NextPrev.IsPrevious());
 
             Console.WriteLine("There is: {0} pages with search result.", pageBar.PageList.LastPageNumber); // It cannot be numberOfPages because it is related to number of webelements, not their value.
-            Console.WriteLine("Current page number is: {0}.", pageBar.PageList.CurrentPageNumber());
+            Console.WriteLine("Current page number is: {0}.\n", pageBar.PageList.CurrentPageNumber());
 
             Console.WriteLine("There is: {0} search results.", productsList.NumberOfResults);
-            Console.WriteLine("Currently on the page is displayed: {0} products.", productsList.ProductsOnPage);
+            Console.WriteLine("Currently on the page is displayed: {0} products.\n", productsList.ProductsOnPage);
 
-            Console.WriteLine("There is: {0} actual products.", productsList.ActualProducts);
+            Console.WriteLine("There is: {0} actual products.\n\n ", productsList.ActualProducts);
 
         }
 

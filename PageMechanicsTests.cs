@@ -21,7 +21,7 @@ namespace WebScraperTests
             IWebDriver driver = new ChromeDriver();
             MainPage mainPage = new MainPage(driver);
 
-            mainPage.SearchProduct("rower gorski", "Warszawa");
+            mainPage.SearchProduct("rower", "Warszawa");
             Assert.That(mainPage.NextPageURL, Is.EqualTo(driver.Url));
 
             SearchPage searchPage = new SearchPage(driver);
@@ -30,7 +30,7 @@ namespace WebScraperTests
              * NOTE: number of pages could change during the test so it has to be taken into account.            
             */
 
-            for (int i = 1; i <= searchPage.PageBar.PageList.LastPageNumber; i++)
+            for (int i = 1; i <= 7; i++)
             {
                 searchPage.DisplayAll();
                 searchPage.GoToNextPage(driver);
