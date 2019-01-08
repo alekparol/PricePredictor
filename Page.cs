@@ -152,7 +152,8 @@ namespace WebScraper
             searchBar.TypeProductName(productName);
             searchBar.SubmitSearch();
 
-            return ut.ChangeLink(baseURL, productName);
+            nextPageURL = ut.ChangeLink(baseURL, productName);
+            return nextPageURL;
 
         }
 
@@ -163,7 +164,8 @@ namespace WebScraper
             searchBar.TypeLocation(productLocation);
             searchBar.SubmitSearch();
 
-            return ut.ChangeLink(baseURL, productName, productLocation);
+            nextPageURL = ut.ChangeLink(baseURL, productName, productLocation);
+            return nextPageURL;
 
         }
 
