@@ -1,18 +1,19 @@
 ﻿<Properties StartupConfiguration="{08D54AEB-FC29-4CFE-8BAE-11584E4ED519}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="PageMechanicsTests.cs">
     <Files>
-      <File FileName="Page.cs" Line="57" Column="57" />
+      <File FileName="Page.cs" Line="276" Column="69" />
       <File FileName="PageTests.cs" Line="1" Column="1" />
       <File FileName="SearchBar.cs" Line="133" Column="25" />
       <File FileName="SearchBarTests.cs" Line="39" Column="1" />
-      <File FileName="PageBar.cs" Line="112" Column="10" />
+      <File FileName="PageBar.cs" Line="85" Column="29" />
       <File FileName="PageBarTests.cs" Line="48" Column="12" />
       <File FileName="OLXProduct.cs" Line="127" Column="59" />
       <File FileName="Utilities.cs" Line="53" Column="63" />
-      <File FileName="PageList.cs" Line="146" Column="28" />
-      <File FileName="ProductsList.cs" Line="93" Column="35" />
-      <File FileName="NextPrev.cs" Line="1" Column="1" />
-      <File FileName="PageMechanicsTests.cs" Line="16" Column="6" />
+      <File FileName="PageList.cs" Line="138" Column="71" />
+      <File FileName="ProductsList.cs" Line="116" Column="149" />
+      <File FileName="NextPrev.cs" Line="37" Column="14" />
+      <File FileName="PageMechanicsTests.cs" Line="30" Column="45" />
+      <File FileName="CategoryTests.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.WebScraper PreferredExecutionTarget="MonoDevelop.Default" />

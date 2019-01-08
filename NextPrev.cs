@@ -83,7 +83,7 @@ namespace WebScraper
 
                 pageNextPrev = new List<IWebElement>(pageChangeBar[0].FindElements(By.ClassName("pageNextPrev")));
 
-                if (pageNextPrev.Count >= 2) // Check if pageChangeBar[0] != null would work.
+                if (pageNextPrev.Count >= 2)
                 {
                     pageNext = pageNextPrev[1];
                     pagePrevious = pageNextPrev[0];

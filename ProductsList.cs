@@ -113,8 +113,7 @@ namespace WebScraper
             listOfProducts = new List<IWebElement>(driver.FindElements(By.ClassName("wrap")));
             productsOnPage = listOfProducts.Count;
 
-            List <IWebElement> listOfActual = new List <IWebElement> (driver.FindElement(By.Id("offers_table")).FindElements(By.Id("wrap")));
-            listOfActual = listOfActual.FindAll((IWebElement obj) => obj.GetAttribute("class") == "offer");
+            List <IWebElement> listOfActual = new List <IWebElement> (driver.FindElement(By.Id("offers_table")).FindElements(By.ClassName("wrap")));
             actualProducts = listOfActual.Count;
 
         }

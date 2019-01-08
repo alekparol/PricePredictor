@@ -236,27 +236,42 @@ namespace WebScraper
         /* ============= */
 
         /**
-         * TODO: Evaluate if this part of code (that is those class methods) are rather more useful in PageBar class or in Page class.       
+         * TODO: Evaluate if this part of code (that is those class methods) are rather more useful in PageBar class or in Page class.    
+         * TODO: Uncomment part of the methods responsible for initializing and returning new searchPage.
+         * TODO: Look if there is no more sanity checks than it is useful and if there is, check where they should be placed instead.         
         */
 
         public void GoToFirstPage (IWebDriver driver)
         {
             pageBar.GoToFirstPage(driver);
+            /*SearchPage firstPage = new SearchPage(driver);
+
+            return firstPage;*/
         }
 
         public void GoToLastPage(IWebDriver driver)
         {
             pageBar.GoToLastPage(driver);
+            /*SearchPage lastPage = new SearchPage(driver);
+
+            return lastPage;*/
+
         }
 
         public void GoToNextPage(IWebDriver driver)
         {
             pageBar.GoToNextPage(driver);
+            /*SearchPage nextPage = new SearchPage(driver);
+
+            return nextPage;*/
         }
 
         public void GoToPreviousPage(IWebDriver driver)
         {
             pageBar.GoToPreviousPage(driver);
+            /*SearchPage previousPage = new SearchPage(driver);
+
+            return previousPage;*/
         }
 
         /**
