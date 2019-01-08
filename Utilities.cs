@@ -38,6 +38,18 @@ namespace WebScraper
 
         }
 
+        public string ChangeLink(string baseURL, string productName)
+        {
+            string nextPageURL = baseURL + "/oferty/q-" + ChangeName(productName) + "/";
+            return nextPageURL;
+        }
+
+        public string ChangeLink(string baseURL, string productName, string productLocation)
+        {
+            string nextPageURL = baseURL + "/" + ChangeLocation(productLocation) + "/q-" + ChangeName(productName) + "/";
+            return nextPageURL;
+        }
+
         /**
          * TODO: Check how url changes for different search locations. 
          */
